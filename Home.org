@@ -1,0 +1,5 @@
+[[file:Work.org][Work]]
+[[file:Music.org][Music]]
+[[file:Emacs.org][Emacs]]
+[[file:Lisp.org][Lisp]]
+[[file:Ideas.org][Ideas]]
