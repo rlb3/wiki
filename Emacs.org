@@ -1,8 +1,13 @@
 * Configuration
+** Gnus
+1. [[http://www.emacswiki.org/emacs-en/GnusTutorial][Gnus Tutorial]]
+** Org Mode
 1. [[http://orgmode.org/][Org Mode]]
 1. [[http://orgmode.org/worg/org-faq.html][Org FAQ]]
+** Emacs Packages
 1. [[http://marmalade-repo.org/][Marmalade Packages]]
 1. [[http://code.google.com/p/yasnippet/][Yasnippet]]
+** Config
 1. [[http://thread.gmane.org/gmane.emacs.orgmode/10804][Advanced configurations]]
 * Blogs
 1. [[http://planet.emacsen.org/][Planet Emacsen]]
