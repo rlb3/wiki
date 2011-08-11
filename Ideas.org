@@ -1,0 +1,3 @@
+* Business ideas
+- My documentation standard will be org-mode
+
