@@ -1,1 +1,2 @@
 1. [[http://orgmode.org/][Org Mode]]
+1. [[http://marmalade-repo.org/][marmalade packages]]
