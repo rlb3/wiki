@@ -1,5 +1,7 @@
+* Configuration
 1. [[http://orgmode.org/][Org Mode]]
 1. [[http://orgmode.org/worg/org-faq.html][Org FAQ]]
 1. [[http://marmalade-repo.org/][Marmalade Packages]]
 1. [[http://code.google.com/p/yasnippet/][Yasnippet]]
+* Blogs
 1. [[http://planet.emacsen.org/][Planet Emacsen]]
