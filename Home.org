@@ -4,4 +4,4 @@
 * Misc
 ** [[file:Ideas.org][Ideas]]
 ** [[file:Music.org][Music]]
-
+** [[Aikido][file:Aikido.org]]
