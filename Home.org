@@ -1,8 +1,7 @@
-* [[file:Ideas.org][Ideas]]
-* [[file:Music.org][Music]]
 * Development
 ** [[file:Emacs.org][Emacs]]
 ** [[file:Lisp.org][Lisp]]
-
-
+* Misc
+** [[file:Ideas.org][Ideas]]
+** [[file:Music.org][Music]]
 
