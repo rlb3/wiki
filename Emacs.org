@@ -1,4 +1,4 @@
 1. [[http://orgmode.org/][Org Mode]]
 1. [[http://orgmode.org/worg/org-faq.html][Org FAQ]]
-1. [[http://marmalade-repo.org/][marmalade packages]]
-1. [[http://code.google.com/p/yasnippet/][yasnippet]]
+1. [[http://marmalade-repo.org/][Marmalade Packages]]
+1. [[http://code.google.com/p/yasnippet/][Yasnippet]]
