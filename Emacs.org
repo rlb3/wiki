@@ -7,7 +7,7 @@
 ** Emacs Packages
 1. [[http://marmalade-repo.org/][Marmalade Packages]]
 1. [[http://code.google.com/p/yasnippet/][Yasnippet]]
-** Config
+** Misc
 1. [[http://thread.gmane.org/gmane.emacs.orgmode/10804][Advanced configurations]]
 * Blogs
 1. [[http://planet.emacsen.org/][Planet Emacsen]]
