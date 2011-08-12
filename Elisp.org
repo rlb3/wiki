@@ -1,0 +1,14 @@
+* [[http://www.reddit.com/r/emacs/comments/jh1me/keeping_large_dired_buffers_tidy/][Keeping large dired buffers tidy]] 
+My philosophy of use for dired is to keep open 1 or 2 dired buffers and use lots of subdirs. LOTS. For a while there I was frustrated with how unmanageable a dired buffer can become with dozens of open subdirs, which involve many branches in the directory structure.
+I set the 'k' key to the following simple little function. Kill the current subdir, and jump back to that subdir's entry in the parent directory. I find navigation to be pretty quick, and it keeps the dired buffer tidy. Here it is. Tips or suggestions welcome. Works best with '-al' dired-listing-switches.
+
+```
+(defun dired-kill-and-next-subdir ()
+  (interactive)
+  (let* ((subdir-name (dired-current-directory))
+           (parent-dir  (file-name-directory (directory-file-name subdir-name)))
+           (search-term (concat " " (file-basename subdir-name))))
+    (dired-kill-subdir)
+    (dired-goto-subdir parent-dir)
+    (search-forward search-term)))
+```
