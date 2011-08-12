@@ -4,6 +4,7 @@
 ** Org Mode
 1. [[http://orgmode.org/][Org Mode]]
 1. [[http://orgmode.org/worg/org-faq.html][Org FAQ]]
+1. [[http://doc.norang.ca/org-mode.html][Org Mode - Organize Your Life In Plain Text!]]
 ** Emacs Packages
 1. [[http://marmalade-repo.org/][Marmalade Packages]]
 1. [[http://code.google.com/p/yasnippet/][Yasnippet]]
