@@ -1,6 +1,8 @@
 * Emacs binaries
 1. [[http://emacsformacosx.com/][Emacs for OSX]]
 * Configuration
+** Code
+[[file:Elisp.org][Elisp Code]]
 ** Gnus
 1. [[http://www.emacswiki.org/emacs-en/GnusTutorial][Gnus Tutorial]]
 ** Misc
