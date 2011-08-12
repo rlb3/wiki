@@ -16,3 +16,4 @@
 1. [[http://planet.emacsen.org/][Planet Emacsen]]
 1. [[http://sachachua.com/blog/category/emacs/][Sacha Chua's emacs posts]]
 1. [[http://sachachua.com/notebook/][Sacha's Notebook]]
+1. [[http://tincman.wordpress.com/2011/01/04/research-paper-management-with-emacs-org-mode-and-reftex/][Research Paper Management with Emacs, org-mode and RefTeX]]
