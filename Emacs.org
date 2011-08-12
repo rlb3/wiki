@@ -20,3 +20,4 @@
 1. [[http://sachachua.com/notebook/][Sacha's Notebook]]
 1. [[http://tincman.wordpress.com/2011/01/04/research-paper-management-with-emacs-org-mode-and-reftex/][Research Paper Management with Emacs, org-mode and RefTeX]]
 1. [[http://www.reddit.com/r/emacs/][M-x reddit-emacs]]
+1. [[http://bc.tech.coop/blog/071001.html][Emacs Running All The Time]]
