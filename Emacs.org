@@ -1,3 +1,5 @@
+* Emacs binaries
+1. [[http://emacsformacosx.com/][Emacs for OSX]]
 * Configuration
 ** Gnus
 1. [[http://www.emacswiki.org/emacs-en/GnusTutorial][Gnus Tutorial]]
