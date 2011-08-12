@@ -1,1 +1,2 @@
 1. [[https://gist.github.com/1129505][fogbugz.lisp]]
+1. [[http://xach.livejournal.com/289652.html][Fighting blog spam with Common Lisp]]
