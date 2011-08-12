@@ -15,3 +15,4 @@
 * Blogs
 1. [[http://planet.emacsen.org/][Planet Emacsen]]
 1. [[http://sachachua.com/blog/category/emacs/][Sacha Chua's emacs posts]]
+1. [[http://sachachua.com/notebook/][Sacha's Notebook]]
