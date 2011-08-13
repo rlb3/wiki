@@ -25,3 +25,14 @@ I set the 'k' key to the following simple little function. Kill the current subd
     (insert (concat "\nFINISHED: <" (format-time-string "%Y-%m-%d %a" (current-time)) ">"))    
     (indent-according-to-mode)))
 ```
+* emacs-jabber config
+```
+(require 'jabber-autoloads)
+(setq jabber-account-list
+      '(("robo4288@gmail.com" 
+         (:network-server . "talk.google.com")
+         (:connection-type . ssl))
+        ("robert@jabber.cpanel.net/emacs2"
+         (:network-server . "jabber.cpanel.net")
+         (:connection-type . ssl))))
+```
