@@ -1,3 +1,3 @@
-1. Use org-mode as much as possible
-1. Start using gnus for personal email
+1. Learn OrgMode
+1. Learn Gnus
 
