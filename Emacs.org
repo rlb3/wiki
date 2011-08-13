@@ -5,6 +5,7 @@
 [[file:Elisp.org][Elisp Code]]
 ** Gnus
 1. [[http://www.emacswiki.org/emacs-en/GnusTutorial][Gnus Tutorial]]
+1. [[http://ghislain.vieilledent.free.fr/?p=237][Gmail with Emacs]]
 ** Misc
 1. [[http://thread.gmane.org/gmane.emacs.orgmode/10804][Advanced configurations]]
 ** Org Mode
