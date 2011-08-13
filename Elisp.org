@@ -12,3 +12,16 @@ I set the 'k' key to the following simple little function. Kill the current subd
     (dired-goto-subdir parent-dir)
     (search-forward search-term)))
 ```
+
+* A org-mode kata
+```
+(defun toggle-checkbox-with-timestamp ()
+  "Toggle checkbox and insert a timestamp in the next line. "
+  (interactive) 
+  (save-excursion
+    (move-end-of-line nil)    
+    (org-toggle-checkbox)
+    (org-update-checkbox-count)
+    (insert (concat "\nFINISHED: <" (format-time-string "%Y-%m-%d %a" (current-time)) ">"))    
+    (indent-according-to-mode)))
+```
