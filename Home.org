@@ -3,6 +3,6 @@
 - [[file:Lisp.org][Lisp]]
 - [[file:Software][Software Tools]]
 * Misc
-- [[file:Ideas.org][Ideas]]
+- [[file:Ideas.org][Projects]]
 - [[file:Music.org][Music]]
 - [[file:Aikido.org][Aikido]]
