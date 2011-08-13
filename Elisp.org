@@ -1,3 +1,32 @@
+* Generic function
+``` scm
+(defmacro comment (&optional sym &rest body)
+  (let ((arg (if (not (null *comment*)) *comment* sym)))
+    (cond ((and (symbolp arg)
+                (eq :run arg)) `(progn ,@body))
+          ((integerp arg)
+           (nth arg `(,@body))))))
+
+(defun rlb3/join (collection separator)
+  (mapconcat 'identity collection separator))
+
+(defmacro* rlb3/with-gensyms (syms &body body)
+  `(let ,(mapcar #'(lambda (s)
+                     `(,s (gensym)))
+                 syms)
+     ,@body))
+
+(defmacro* rlb3/save-windows (&body body)
+  (rlb3/with-gensyms (letter reg-value)
+                     `(let* ((,letter ?s)
+                             (,reg-value (get-register ,letter)))
+                        (window-configuration-to-register ,letter)
+                        (unwind-protect
+                            ,@body
+                          (jump-to-register ,letter)
+                          (set-register ,letter ,reg-value)))))
+```
+
 * [[http://www.reddit.com/r/emacs/comments/jh1me/keeping_large_dired_buffers_tidy/][Keeping large dired buffers tidy]] 
 My philosophy of use for dired is to keep open 1 or 2 dired buffers and use lots of subdirs. LOTS. For a while there I was frustrated with how unmanageable a dired buffer can become with dozens of open subdirs, which involve many branches in the directory structure.
 I set the 'k' key to the following simple little function. Kill the current subdir, and jump back to that subdir's entry in the parent directory. I find navigation to be pretty quick, and it keeps the dired buffer tidy. Here it is. Tips or suggestions welcome. Works best with '-al' dired-listing-switches.
@@ -35,4 +64,61 @@ I set the 'k' key to the following simple little function. Kill the current subd
         ("robert@jabber.cpanel.net/emacs2"
          (:network-server . "jabber.cpanel.net")
          (:connection-type . ssl))))
+```
+* eshell config
+```
+(setq eshell-prompt-function
+      (lambda ()
+        (concat
+         (eshell/pwd)
+         " $ ")))
+
+(defun eshell/clear ()
+  (interactive)
+  (let ((inhibit-read-only t))
+    (erase-buffer)))
+
+(defun eshell/ec (file)
+  (find-file file))
+
+(defalias 'eshell/vim 'eshell/ec)
+(defalias 'eshell/vi  'eshell/ec)
+
+(setq eshell-prompt-function
+      (lambda ()
+        (concat
+         (eshell/pwd)
+         (if (eshell/git-branch-name)
+             (concat " (" (eshell/git-branch-name) ")"))
+         " $ ")))
+
+;; git symbolic-ref HEAD 2> /dev/null | cut -b 12-
+(defun eshell/git-branch-name ()
+  (interactive)
+  (let* ((branch-ref (when (shell-command-to-string "git rev-parse --git-dir 2>/dev/null")
+                       (shell-command-to-string "git symbolic-ref HEAD 2>/dev/null")))
+         (branch (nth 0 (reverse (split-string branch-ref "/")))))
+    (when (not (string= branch ""))
+      (substring branch 0 -1))))
+```
+* Perl functions
+
+```
+(defun rlb3/decompile-perl (start end)
+  (interactive "r")
+  (shell-command-on-region start end "perl -MO=Concise,-exec"))
+
+(defun rlb3/deparse-perl (start end)
+  (interactive "r")
+  (shell-command-on-region start end "perl -MO=Deparse,-P"))
+
+(defun rlb3/perl-what-sub ()
+  (interactive)
+  (save-excursion
+    (re-search-backward "^sub" nil t 1)
+    (when (looking-at "sub")
+      (forward-char 4)
+      (let ((beg (point)))
+        (search-forward " ")
+        (message "SUBROUTINE: %s" (buffer-substring beg (1- (point))))))))
 ```
