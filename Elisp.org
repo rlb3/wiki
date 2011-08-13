@@ -1,5 +1,5 @@
 * Generic function
-``` scm
+``` scheme
 (defmacro comment (&optional sym &rest body)
   (let ((arg (if (not (null *comment*)) *comment* sym)))
     (cond ((and (symbolp arg)
@@ -121,4 +121,14 @@ I set the 'k' key to the following simple little function. Kill the current subd
       (let ((beg (point)))
         (search-forward " ")
         (message "SUBROUTINE: %s" (buffer-substring beg (1- (point))))))))
+```
+
+* Indent Whole Buffer
+```
+(defun iwb ()
+  "indent whole buffer"
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))
 ```
