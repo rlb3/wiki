@@ -13,10 +13,47 @@
       - [[http://mojolicio.us/][Mojolicious]]
 ** Database Design
    - Tables
-     - Admins
-     - Admin Groups
-     - Voters
-     - Voter Groups
-     - Elections
-     - Candidates
-     - Votes
+     - login
+       - token
+       - admin id
+       - create time
+     - admins
+       - id
+       - Group id
+       - first name
+       - last name
+       - email
+       - username
+       - password
+       - Date Created
+     - groups
+       - id
+       - Group name
+     - voters
+       - id
+       - group id
+       - first name
+       - last name
+       - email
+       - password
+     - voter groups
+       - id
+       - group name
+     - elections
+       - id
+       - group id
+       - name
+       - start timestamp
+       - end timestamp
+       - type
+     - candidates
+       - id
+       - group id
+       - first name
+       - last name
+       - info
+     - votes
+       - id
+       - candidate id
+       - create timestamp
+
