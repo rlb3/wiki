@@ -1,0 +1,11 @@
+* Elections web service
+** Features
+   - The user will be able to upload a list of eligible voters
+   - The user will be able to create Elections
+     - The user will be able to create run-off election in the event of tie
+   - The user will be able to determine vote count thresholds
+   - The user will be able to make elections active between certain
+     time periods
+   - The user will be able to see report of the finished election
+   - The user will be able to choose between different tiers of service
+   
