@@ -10,8 +10,13 @@
    - The user will be able to choose between different tiers of service
 ** Platform
     - Perl
-      - [[http://mojolicio.us/][Mojolicio]]
-      - [[http://perldancer.org/][Dancer]]
-    - Lisp
-      - Weblocks
-      - [[http://www.cliki.net/RESTAS][Restas]]
+      - [[http://mojolicio.us/][Mojolicious]]
+** Database Design
+   - Tables
+     - Admins
+     - Admin Groups
+     - Voters
+     - Voter Groups
+     - Elections
+     - Candidates
+     - Votes
