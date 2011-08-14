@@ -8,4 +8,10 @@
      time periods
    - The user will be able to see report of the finished election
    - The user will be able to choose between different tiers of service
-   
+** Platform
+    - Perl
+      - [[http://mojolicio.us/][Mojolicio]]
+      - [[http://perldancer.org/][Dancer]]
+    - Lisp
+      - Weblocks
+      - [[http://www.cliki.net/RESTAS][Restas]]
