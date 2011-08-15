@@ -1,4 +1,4 @@
-* Generic function
+* Generic functions
 ``` scheme
 (defmacro comment (&optional sym &rest body)
   (let ((arg (if (not (null *comment*)) *comment* sym)))
