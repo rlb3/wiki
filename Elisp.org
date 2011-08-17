@@ -132,3 +132,19 @@ I set the 'k' key to the following simple little function. Kill the current subd
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 ```
+* .emacs
+** init.el
+```
+(setq rlb3-user-config (concat user-emacs-directory user-login-name ".el")
+      rlb3-user-dir (concat user-emacs-directory user-login-name))
+
+(add-to-list 'load-path rlb3-user-dir)
+
+(dolist (l (directory-files rlb3-user-dir nil "^[^#].*el$"))
+  (load l))
+
+(when (file-exists-p rlb3-user-config)
+  (load rlb3-user-config))
+
+(ido-mode t)
+```
