@@ -2,7 +2,8 @@
 2. Learn Gnus
 3. Learn [[http://philjackson.github.com/magit/][Magit]]
 4. [[file:Elections.org][Elections Web Service]]
-* Movies of things I want to learn
-1. [[file:~/Dropbox/Movies/NSConf11Main-06%20Kevin%20Hoctor.m4v][Building a better business]]
-1. [[~/Dropbox/Movies/NSConf11Main-08%20John%20Fox.m4v][Anyone for cappuccino]]
 5. Learn [[http://search.cpan.org/~sargie/Test-BDD-Cucumber-0.01/][Test::BDD::Cucumber]]
+6. Movies
+   - [[file:~/Dropbox/Movies/NSConf11Main-06%20Kevin%20Hoctor.m4v][Building a better business]]
+   - [[~/Dropbox/Movies/NSConf11Main-08%20John%20Fox.m4v][Anyone for cappuccino]]
+   - [[Http://peepcode.com/products/cucumber][Use The Cucumber]]
