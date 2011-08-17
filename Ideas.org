@@ -1,9 +1,21 @@
 1. Learn OrgMode
-2. Learn Gnus
-3. Learn [[http://philjackson.github.com/magit/][Magit]]
-4. [[file:Elections.org][Elections Web Service]]
-5. Learn [[http://search.cpan.org/~sargie/Test-BDD-Cucumber-0.01/][Test::BDD::Cucumber]]
-6. Movies
+2. Learn [[http://www.latex-project.org/][Latex]]
+3. Learn Gnus
+4. Learn [[http://philjackson.github.com/magit/][Magit]]
+5. [[file:Elections.org][Elections Web Service]]
+6. Learn [[http://search.cpan.org/~sargie/Test-BDD-Cucumber-0.01/][Test::BDD::Cucumber]]
+7. Read [[http://www.entrepreneur.com/management/leadership/businessstrategies/article65230.html][How to Write Your Mission Statement]]
+   [[http://www.freshbooks.com/blog/2011/08/16/becoming-a-business-owner-series-part-1-staying-balanced-while-busy/][Becoming a Business Owner Series Part 1: Staying Balanced While Busy]]
+   - Why are you in business?
+   - Who are your customers?
+   - What image of your business do you want to convey?
+   - What level of service do you provide?
+   - What roles do you and your employees play?
+   - What kind of relationships will you maintain with suppliers?
+   - How do you differ from your competitors?
+   - How will you use technology, processes, and services to reach your goals?
+   - What underlying philosophies or values guided your responses to the previous questions?
+8. Movies
    - [[file:~/Dropbox/Movies/NSConf11Main-06%20Kevin%20Hoctor.m4v][Building a better business]]
    - [[~/Dropbox/Movies/NSConf11Main-08%20John%20Fox.m4v][Anyone for cappuccino]]
    - [[Http://peepcode.com/products/cucumber][Use The Cucumber]]
