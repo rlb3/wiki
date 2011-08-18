@@ -1,26 +1,26 @@
 * Emacs binaries
-1. [[http://emacsformacosx.com/][Emacs for OSX]]
+ 1. [[http://emacsformacosx.com/][Emacs for OSX]]
 * Configuration
 ** Code
-[[file:Elisp.org][Elisp Code]]
+   [[file:Elisp.org][Elisp Code]]
 ** Gnus
-1. [[http://www.emacswiki.org/emacs-en/GnusTutorial][Gnus Tutorial]]
-1. [[http://ghislain.vieilledent.free.fr/?p=237][Gmail with Emacs]]
+ 1. [[http://www.emacswiki.org/emacs-en/GnusTutorial][Gnus Tutorial]]
+ 2. [[http://ghislain.vieilledent.free.fr/?p=237][Gmail with Emacs]]
 ** Misc
-1. [[http://thread.gmane.org/gmane.emacs.orgmode/10804][Advanced configurations]]
+ 1. [[http://thread.gmane.org/gmane.emacs.orgmode/10804][Advanced configurations]]
 ** Org Mode
-1. [[http://orgmode.org/][Org Mode]]
-1. [[http://orgmode.org/worg/org-faq.html][Org FAQ]]
-1. [[http://doc.norang.ca/org-mode.html][Org Mode - Organize Your Life In Plain Text!]]
+ 1. [[http://orgmode.org/][Org Mode]]
+ 2. [[http://orgmode.org/worg/org-faq.html][Org FAQ]]
+ 3. [[http://doc.norang.ca/org-mode.html][Org Mode - Organize Your Life In Plain Text!]]
 ** Emacs Packages
-1. [[http://marmalade-repo.org/][Marmalade Packages]]
-1. [[http://code.google.com/p/yasnippet/][Yasnippet]]
+ 1. [[http://marmalade-repo.org/][Marmalade Packages]]
+ 2. [[http://code.google.com/p/yasnippet/][Yasnippet]]
 * Blogs
-1. [[http://planet.emacsen.org/][Planet Emacsen]]
-1. [[http://sachachua.com/blog/category/emacs/][Sacha Chua's emacs posts]]
-1. [[http://sachachua.com/notebook/][Sacha's Notebook]]
-1. [[http://tincman.wordpress.com/2011/01/04/research-paper-management-with-emacs-org-mode-and-reftex/][Research Paper Management with Emacs, org-mode and RefTeX]]
-1. [[http://www.reddit.com/r/emacs/][M-x reddit-emacs]]
-1. [[http://bc.tech.coop/blog/071001.html][Emacs Running All The Time]]
-1. [[http://denverdroid.blogspot.com/2011/07/cool-things-to-do-in-emacs-dired-mode.html][Cool Things to do in Emacs' Dired Mode]]
-1. [[http://www.masteringemacs.org/articles/2010/12/13/complete-guide-mastering-eshell/][Complete Guide Mastering Eshell]]
+ 1. [[http://planet.emacsen.org/][Planet Emacsen]]
+ 2. [[http://sachachua.com/blog/category/emacs/][Sacha Chua's emacs posts]]
+ 3. [[http://sachachua.com/notebook/][Sacha's Notebook]]
+ 4. [[http://tincman.wordpress.com/2011/01/04/research-paper-management-with-emacs-org-mode-and-reftex/][Research Paper Management with Emacs, org-mode and RefTeX]]
+ 5. [[http://www.reddit.com/r/emacs/][M-x reddit-emacs]]
+ 6. [[http://bc.tech.coop/blog/071001.html][Emacs Running All The Time]]
+ 7. [[http://denverdroid.blogspot.com/2011/07/cool-things-to-do-in-emacs-dired-mode.html][Cool Things to do in Emacs' Dired Mode]]
+ 8. [[http://www.masteringemacs.org/articles/2010/12/13/complete-guide-mastering-eshell/][Complete Guide Mastering Eshell]]

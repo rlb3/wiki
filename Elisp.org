@@ -1,5 +1,21 @@
 * Generic functions
-``` scheme
+#+begin_src emacs-lisp
+(defun launch-term-for-current-buffer ()
+     (interactive)
+     (save-buffer)
+     (ns-do-applescript
+      (concat
+       "tell application \"iTerm\" \n\
+          activate \n\
+          tell the first terminal \n\
+            launch session \"Default Session\" \n\
+            tell the last session \n\
+              write text \"cd " (file-name-directory (buffer-file-name)) "\" \n\
+            end tell \n\
+          end tell \n\
+        end tell")))
+(global-set-key (kbd "<f6>") 'launch-term-for-current-buffer)    
+
 (defmacro comment (&optional sym &rest body)
   (let ((arg (if (not (null *comment*)) *comment* sym)))
     (cond ((and (symbolp arg)
@@ -25,13 +41,11 @@
                             ,@body
                           (jump-to-register ,letter)
                           (set-register ,letter ,reg-value)))))
-```
-
+#+end_src
 * [[http://www.reddit.com/r/emacs/comments/jh1me/keeping_large_dired_buffers_tidy/][Keeping large dired buffers tidy]] 
 My philosophy of use for dired is to keep open 1 or 2 dired buffers and use lots of subdirs. LOTS. For a while there I was frustrated with how unmanageable a dired buffer can become with dozens of open subdirs, which involve many branches in the directory structure.
 I set the 'k' key to the following simple little function. Kill the current subdir, and jump back to that subdir's entry in the parent directory. I find navigation to be pretty quick, and it keeps the dired buffer tidy. Here it is. Tips or suggestions welcome. Works best with '-al' dired-listing-switches.
-
-```
+#+begin_src emacs-lisp
 (defun dired-kill-and-next-subdir ()
   (interactive)
   (let* ((subdir-name (dired-current-directory))
@@ -40,10 +54,9 @@ I set the 'k' key to the following simple little function. Kill the current subd
     (dired-kill-subdir)
     (dired-goto-subdir parent-dir)
     (search-forward search-term)))
-```
-
+#+end_src
 * A org-mode kata
-```
+#+begin_src emacs-lisp
 (defun toggle-checkbox-with-timestamp ()
   "Toggle checkbox and insert a timestamp in the next line. "
   (interactive) 
@@ -53,9 +66,9 @@ I set the 'k' key to the following simple little function. Kill the current subd
     (org-update-checkbox-count)
     (insert (concat "\nFINISHED: <" (format-time-string "%Y-%m-%d %a" (current-time)) ">"))    
     (indent-according-to-mode)))
-```
+#+end_src
 * emacs-jabber config
-```
+#+begin_src emacs-lisp
 (require 'jabber-autoloads)
 (setq jabber-account-list
       '(("robo4288@gmail.com" 
@@ -64,9 +77,9 @@ I set the 'k' key to the following simple little function. Kill the current subd
         ("robert@jabber.cpanel.net/emacs2"
          (:network-server . "jabber.cpanel.net")
          (:connection-type . ssl))))
-```
+#+end_src
 * eshell config
-```
+#+begin_src emacs-lisp
 (setq eshell-prompt-function
       (lambda ()
         (concat
@@ -100,10 +113,9 @@ I set the 'k' key to the following simple little function. Kill the current subd
          (branch (nth 0 (reverse (split-string branch-ref "/")))))
     (when (not (string= branch ""))
       (substring branch 0 -1))))
-```
+#+end_src
 * Perl functions
-
-```
+#+begin_src emacs-lisp 
 (defun rlb3/decompile-perl (start end)
   (interactive "r")
   (shell-command-on-region start end "perl -MO=Concise,-exec"))
@@ -121,20 +133,21 @@ I set the 'k' key to the following simple little function. Kill the current subd
       (let ((beg (point)))
         (search-forward " ")
         (message "SUBROUTINE: %s" (buffer-substring beg (1- (point))))))))
-```
-
+#+end_src
 * Indent Whole Buffer
-```
+#+begin_src emacs-lisp 
 (defun iwb ()
   "indent whole buffer"
   (interactive)
   (delete-trailing-whitespace)
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
-```
+#+end_src
 * .emacs
 ** init.el
-```
+#+begin_src emacs-lisp 
+(push "/usr/local/bin" exec-path)
+
 (setq rlb3-user-config (concat user-emacs-directory user-login-name ".el")
       rlb3-user-dir (concat user-emacs-directory user-login-name))
 
@@ -147,4 +160,23 @@ I set the 'k' key to the following simple little function. Kill the current subd
   (load rlb3-user-config))
 
 (ido-mode t)
-```
+
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+(setq-default tab-width 2)
+(setq-default indent-tabs-mode nil)
+(setq inhibit-startup-message t)
+
+(fset 'yes-or-no-p 'y-or-n-p)
+
+(delete-selection-mode t)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(blink-cursor-mode t)
+(show-paren-mode t)
+(column-number-mode t)
+(set-fringe-style -1)
+(tooltip-mode -1)
+
+(set-frame-font "Monaco-24")
+#+end_src
