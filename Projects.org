@@ -10,11 +10,13 @@
   2. Learn [[http://www.latex-project.org/][Latex]]
   3. Learn [[http://www.gnus.org/][Gnus]]
   4. Learn [[http://philjackson.github.com/magit/][Magit]]
+     1. [[http://vimeo.com/2871241][Meet Magit]]
   5. Learn BDD
      1. [[http://search.cpan.org/~sargie/Test-BDD-Cucumber-0.01/][Test::BDD::Cucumber]]
      2. [[http://code.google.com/p/uispec/][UISpec]]
      3. [[http://www.kiwi-lib.info/][Kiwi]]
-  6. Movies to watch
+  6. Learn [[http://vimeo.com/14742598][Emacs-Calc]]
+  7. Movies to watch
      - [[file:~/Dropbox/Movies/NSConf11Main-06%20Kevin%20Hoctor.m4v][Building a better business]]
      - [[~/Dropbox/Movies/NSConf11Main-08%20John%20Fox.m4v][Anyone for cappuccino]]
      - [[Http://peepcode.com/products/cucumber][Use The Cucumber]]
