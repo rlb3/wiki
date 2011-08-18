@@ -9,51 +9,58 @@
    - The user will be able to see report of the finished election
    - The user will be able to choose between different tiers of service
 ** Platform
-    - Perl
-      - [[http://mojolicio.us/][Mojolicious]]
+*** Backend
+     - Perl
+       - [[http://mojolicio.us/][Mojolicious]]
+       - Test::BDD::Cucumber
+*** Web frontend
+    - [[http://cappuccino.org/][Cappuccino]]
+*** Mobile
+    - iPhone / iPad
 ** Database Design
-   - Tables
-     - login
-       - token
-       - admin id
-       - create time
-     - admins
-       - id
-       - Group id
-       - first name
-       - last name
-       - email
-       - username
-       - password
-       - Date Created
-     - groups
-       - id
-       - Group name
-     - voters
-       - id
-       - group id
-       - first name
-       - last name
-       - email
-       - password
-     - voter groups
-       - id
-       - group name
-     - elections
-       - id
-       - group id
-       - name
-       - start timestamp
-       - end timestamp
-       - type
-     - candidates
-       - id
-       - group id
-       - first name
-       - last name
-       - info
-     - votes
-       - id
-       - candidate id
-       - create timestamp
+*** PostgreSQL
+    - Tables
+      - login
+        - token
+        - admin id
+        - create time
+      - admins
+        - id
+        - Group id
+        - first name
+        - last name
+        - email
+        - username
+        - password
+        - Date Created
+      - groups
+        - id
+        - Group name
+      - voters
+        - id
+        - group id
+        - first name
+        - last name
+        - email
+        - password
+      - voter groups
+        - id
+        - group name
+      - elections
+        - id
+        - group id
+        - name
+        - start timestamp
+        - end timestamp
+        - type
+      - candidates
+        - id
+        - group id
+        - first name
+        - last name
+        - info
+      - votes
+        - id
+        - candidate id
+        - create timestamp
 
