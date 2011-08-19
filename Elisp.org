@@ -254,3 +254,187 @@ I set the 'k' key to the following simple little function. Kill the current subd
 
 $0
 #+end_src
+
+* cpanel.el
+#+begin_src emacs-lisp 
+(eval-when-compile (require 'cl))
+(require 'json)
+(require 'url)
+(require 'url-http)
+
+(defgroup cpanel nil
+  "cPanel customization group"
+  :group 'cpanel
+  :prefix "cpanel-")
+
+(defcustom cpanel-user "root"
+  "cPanel API user"
+  :type 'string
+  :group 'cpanel)
+
+(defcustom cpanel-host-and-port "localhost:2086"
+  "cPanel host and port"
+  :type 'string
+  :group 'cpanel)
+
+(defcustom cpanel-whm-host "http://localhost:2086/json-api/"
+  "cPanel API Host"
+  :type 'string
+  :group 'cpanel)
+
+(setq cpanel-passwd nil)
+
+(defun cpanel-passwd ()
+  (or cpanel-passwd (setf cpanel-passwd (read-passwd "WHM Password> "))))
+
+(defun cpanel-clear-auth ()
+  (interactive)
+  (setq cpanel-passwd nil)
+  (set url-basic-auth-storage nil))
+
+;; Maybe a cpanel-with-auth macro
+;;
+;; (defmacro cpanel-with-auth (&rest body)
+;;   `(let ((url-basic-auth-storage (,cpanel-host-and-port ("Web Host Manager" . ,(base64-encode-string (format "%s:%s" cpanel-user (cpanel-passwd)))))))
+;;      ,@body)))
+
+(defun cpanel-auth ()
+  (set url-basic-auth-storage
+       (cons (list cpanel-host-and-port
+                   (cons "Web Host Manager"
+                         (base64-encode-string (format "%s:%s" cpanel-user (cpanel-passwd)))))
+             (symbol-value url-basic-auth-storage))))
+
+(defun cpanel-listaccts ()
+  (cpanel-auth)
+  (with-temp-buffer
+    (set-buffer
+     (url-retrieve-synchronously
+      (format "%s%s" cpanel-whm-host "listaccts?api.version=1")))
+    (goto-char (point-min))
+    (forward-line (1- 6))
+    (let ((json-array-type 'list))
+      (json-read-from-string (buffer-substring (point) (point-max))))))
+
+(defun cpanel-usernames ()
+  (loop for acct in (cdr (assoc 'acct (assoc 'data (cpanel-listaccts))))
+        collect (cdr (assoc 'user acct))))
+
+(defun cpanel-view-users ()
+  (interactive)
+  (save-excursion
+    (let ((cpanel-buffer "*cpanel*"))
+      (set-buffer (get-buffer-create cpanel-buffer))
+      (erase-buffer)
+      (insert "cPanel Users:\n")
+      (dolist (user (cpanel-usernames))
+        (insert (format "\t%s\n" user)))
+      (switch-to-buffer (get-buffer-create cpanel-buffer)))))
+
+(defun cpanel-terminate-user ()
+  (interactive)
+  (cpanel-auth)
+  (let* ((json-array-type 'list)
+         (user (ido-completing-read "Cpanel User> " (cpanel-usernames)))
+         (node
+          (with-temp-buffer
+            (set-buffer
+             (url-retrieve-synchronously
+              (format "%s%s?user=%s&keepdns=0" cpanel-whm-host "removeacct" user)))
+            (goto-char (point-min))
+            (forward-line (1- 6))
+            (json-read-from-string (buffer-substring (point) (point-max))))))
+    (message (cdr (assoc 'statusmsg (car (cdr (assoc 'result node))))))))
+
+(defun cpanel-create-user ()
+  (interactive)
+  (cpanel-auth)
+  (let* ((json-array-type 'list)
+         (domain (read-input "User's Domain> "))
+         (user (read-input "Username> "))
+         (pass (read-passwd "User's Password> "))
+         (options `(("domain" . ,domain)   ; Domain name
+                    ("username" . ,user)   ; Username for the account
+                    ("password" . ,pass)   ; Password for accessing cPanel
+                    ("plan" . "default")   ; Package to use for account creation
+                    ("ip" . "n")           ; Whether or not the domain has a dedicated IP address
+                    ("cpmod" . "x3")       ; cPanel theme name
+                    ("useregns" . "0")     ; Use the registered nameservers for the domain instead of the ones configured on the server
+                    ("reseller" . "0")     ; Give reseller privileges to  Give reseller privileges to
+                    ("hasshell" . "1")     ; Whether or not the domain has shell/SSH access
+                    ("forcedns" . "1")     ; Overwrite current DNS Zone if a DNS Zone already  exists
+                    ("maxsql" . "100")     ; Maximum number of SQL databases the user can create
+                    ("maxsub" . "100")     ; Maximum number of subdomains the user can create
+                    ("maxpark" . "100")    ; Maximum number of parked domains the user can create
+                    ("maxaddon" . "100"))) ; Maximum number of addon domains the user can create 
+         (uri-string (rlb3/join (mapcar (lambda (pair) (format "%s=%s" (car pair) (cdr pair))) options) "&"))
+         (node (with-temp-buffer
+                 (set-buffer
+                  (url-retrieve-synchronously
+                   (format "%s%s?%s" cpanel-whm-host "createacct" uri-string)))
+                 (goto-char (point-min))
+                 (forward-line (1- 6))
+                 (json-read-from-string (buffer-substring (point) (point-max))))))
+    (message (cdr (assoc 'statusmsg (car (cdr (assoc 'result node))))))))
+
+(provide 'cpanel)
+#+end_src
+
+* fbcli.el
+#+begin_src emacs-lisp
+(require 'cl)
+(require 'thingatpt)
+(require 'parse-time)
+
+;; To configure
+;; M-x customize-group RET cpanel
+
+(defgroup cpanel nil
+  "cPanel customization group")
+
+(defcustom fbcli-binary "fbcli"
+  "Location of the fbcli binary"
+  :type 'file
+  :group 'cpanel)
+
+(defcustom fbcli-password-file nil
+  "Location of the password file"
+  :type 'file
+  :group 'cpanel)
+
+(defcustom fbcli-user nil
+  "Fogbugz username"
+  :type 'string
+  :group 'cpanel)
+
+(defcustom fbcli-url "fogbugz.cpanel.net"
+  "Fogbugz server"
+  :type 'string
+  :group 'cpanel)
+
+(defun fbcli-get-case-number ()
+  (let ((fbcase (or (thing-at-point 'word)
+                    (read-string "Case Number> "))))
+    (when (eql (string-match "^[[:digit:]]+$" fbcase) 0)
+      (parse-integer fbcase))))
+
+(defun fbcli-view-case ()
+  (interactive)
+  (let ((fbcli-buffer "*fbcli*")
+        (fbcase (fbcli-get-case-number)))
+    (if (integerp fbcase)
+        (progn
+          (set-buffer (get-buffer-create fbcli-buffer))
+          (erase-buffer)
+          (shell-command
+           (format "%s --password-file %s --url %s --user %s --extended view %s" fbcli-binary fbcli-password-file fbcli-url fbcli-user fbcase)
+           (current-buffer) nil)
+          (let ((url (format "http://%s/default.asp?%s" fbcli-url fbcase)))
+            (message "%s" url)
+            (kill-new (format "%s" url))))
+      (message "Case number not given"))))
+
+(global-set-key (kbd "C-c f") 'fbcli-view-case)
+
+(provide 'fbcli)
+#+end_src
