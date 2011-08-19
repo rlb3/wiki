@@ -167,6 +167,8 @@ I set the 'k' key to the following simple little function. Kill the current subd
 (set-fringe-style -1)
 (tooltip-mode -1)
 
+(global-set-key "\C-x\C-b" 'ibuffer)
+
 (setq rlb3-user-config (concat user-emacs-directory user-login-name ".el")
       rlb3-user-dir (concat user-emacs-directory user-login-name))
 
@@ -177,6 +179,9 @@ I set the 'k' key to the following simple little function. Kill the current subd
 
 (when (file-exists-p rlb3-user-config)
   (load rlb3-user-config))
+
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
 #+end_src
 
 ** robert.el
@@ -242,6 +247,16 @@ I set the 'k' key to the following simple little function. Kill the current subd
     (when (re-search-forward "^<<<<<<< " nil t)
       (smerge-mode 1))))
 (add-hook 'find-file-hook 'sm-try-smerge t)
+
+(add-to-list 'load-path "~/.emacs.d/vender/emacs-jabber")
+(require 'jabber-autoloads)
+(setq jabber-account-list
+      '(("robo4288@gmail.com" 
+         (:network-server . "talk.google.com")
+         (:connection-type . ssl))
+        ("robert@jabber.cpanel.net/emacs2"
+         (:network-server . "jabber.cpanel.net")
+         (:connection-type . ssl))))
 #+end_src
 * yasnippets
 #+begin_src emacs-lisp 
