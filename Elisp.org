@@ -148,17 +148,6 @@ I set the 'k' key to the following simple little function. Kill the current subd
 #+begin_src emacs-lisp 
 (push "/usr/local/bin" exec-path)
 
-(setq rlb3-user-config (concat user-emacs-directory user-login-name ".el")
-      rlb3-user-dir (concat user-emacs-directory user-login-name))
-
-(add-to-list 'load-path rlb3-user-dir)
-
-(dolist (l (directory-files rlb3-user-dir nil "^[^#].*el$"))
-  (load l))
-
-(when (file-exists-p rlb3-user-config)
-  (load rlb3-user-config))
-
 (ido-mode t)
 
 (setq make-backup-files nil)
@@ -177,6 +166,17 @@ I set the 'k' key to the following simple little function. Kill the current subd
 (column-number-mode t)
 (set-fringe-style -1)
 (tooltip-mode -1)
+
+(setq rlb3-user-config (concat user-emacs-directory user-login-name ".el")
+      rlb3-user-dir (concat user-emacs-directory user-login-name))
+
+(add-to-list 'load-path rlb3-user-dir)
+
+(dolist (l (directory-files rlb3-user-dir nil "^[^#].*el$"))
+  (load l))
+
+(when (file-exists-p rlb3-user-config)
+  (load rlb3-user-config))
 #+end_src
 
 ** robert.el
