@@ -1,5 +1,9 @@
 * Emacs binaries
  1. [[http://emacsformacosx.com/][Emacs for OSX]]
+ 2. [[http://mxcl.github.com/homebrew/][Homebrew]] 
+#+begin_src sh
+     brew install emacs --cocoa --use-git-head --HEAD
+#+end_src
 * Configuration
 ** Code
    [[file:Elisp.org][Elisp Code]]
