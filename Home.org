@@ -1,3 +1,5 @@
+#+TITLE: Org WIKI
+
 * Development
 - [[file:Emacs.org][Emacs]]
 - [[file:Lisp.org][Lisp]]

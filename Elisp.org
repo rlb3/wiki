@@ -170,7 +170,8 @@ I set the 'k' key to the following simple little function. Kill the current subd
 (global-set-key "\C-x\C-b" 'ibuffer)
 
 (setq rlb3-user-config (concat user-emacs-directory user-login-name ".el")
-      rlb3-user-dir (concat user-emacs-directory user-login-name))
+      rlb3-user-dir (concat user-emacs-directory user-login-name)
+      rlb3-system-config (concat user-emacs-directory (car (split-string system-name "\\.")) ".el"))
 
 (add-to-list 'load-path rlb3-user-dir)
 
@@ -180,13 +181,18 @@ I set the 'k' key to the following simple little function. Kill the current subd
 (when (file-exists-p rlb3-user-config)
   (load rlb3-user-config))
 
+(when (file-exists-p rlb3-system-config)
+  (load rlb3-system-config))
+
+(require 'package)
+(package-initialize)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 #+end_src
 
 ** robert.el
 #+begin_src emacs-lisp
-(set-default-frame-font "Monaco-24")
+(set-frame-font "Monaco-24")
 
 (global-set-key (kbd "C-c g") 'magit-status)
 
@@ -259,6 +265,7 @@ I set the 'k' key to the following simple little function. Kill the current subd
          (:connection-type . ssl))))
 #+end_src
 * yasnippets
+  #+sourcename header
 #+begin_src emacs-lisp 
 # cpanel - ${1:`(let ((file-name (substring (buffer-file-name) 18)))
                   (concat file-name (dotimes (x (- 39 (length file-name)))

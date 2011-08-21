@@ -1,22 +1,29 @@
-* Elections web service
-** Features
-   - The user will be able to upload a list of eligible voters
-   - The user will be able to create Elections
-     - The user will be able to create run-off election in the event of tie
-   - The user will be able to determine vote count thresholds
-   - The user will be able to make elections active between certain
-     time periods
-   - The user will be able to see report of the finished election
-   - The user will be able to choose between different tiers of service
-** Platform
-*** Backend
-     - Perl
-       - [[http://mojolicio.us/][Mojolicious]]
-       - Test::BDD::Cucumber
-*** Web frontend
-    - [[http://cappuccino.org/][Cappuccino]]
-*** Mobile
-    - iPhone / iPad
+#+TITLE: Elections web service
+
+* Features
+  <2011-08-14 Sun>
+  - The user will be able to upload a list of eligible voters
+  - The user will be able to create Elections
+    - The user will be able to create run-off election in the event of tie
+  - The user will be able to determine vote count thresholds
+  - The user will be able to make elections active between certain
+    time periods
+  - The user will be able to see report of the finished election
+  - The user will be able to choose between different tiers of service
+* Platform
+** Server setup
+*** DONE Setup with GoDaddy hosting
+    - State "DONE"       from ""           <2011-08-15 Mon>
+*** TODO Bug Tracker
+    [[http://usefulinc.com/edd/notes/IssueTrackers][Bug Trackers to look into]] [2011-08-21 Sun]
+** Backend
+    - Perl
+      - [[http://mojolicio.us/][Mojolicious]]
+      - Test::BDD::Cucumber
+** Web frontend
+   - [[http://cappuccino.org/][Cappuccino]]
+** Mobile
+   - iPhone / iPad
 ** Database Design
 *** PostgreSQL
     - Tables
