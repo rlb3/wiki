@@ -6,73 +6,81 @@
   | [[http://www.amazon.com/iOS-Programming-Ranch-Guides-ebook/dp/B004Z2NQJQ/ref%3Dpd_sim_kinc_1?ie%3DUTF8&m%3DAG56TWVU5XWC2][iOS Programming: The Big Nerd Ranch Guide]]                                  | Kindle version | $26.99 |
   | [[http://peepcode.com/products/cucumber][Use the Cucumber]]                                                           | Peepcode       | $12.00 |
   | [[http://pragprog.com/book/hwcuc/the-cucumber-book][The Cucumber Book: Behaviour-Driven Development for Testers and Developers]] | PragProg       | $20.00 |
+  | [[http://pragprog.com/book/ktmack/mac-kung-fu][Mac Kung Fu: Over 300 Tips, Tricks, Hints, and Hacks for OS X Lion]]         | PragProg       | $22.00 |
   |                                                                            |                |        |
-* General things to learn
-  1. Learn [[http://orgmode.org/][Org-Mode]]
-     1. [[http://doc.norang.ca/org-mode.html][Org Mode - Organize Your Life In Plain Text!]]
-     2. [[http://sachachua.com/blog/2007/12/a-day-in-a-life-with-org/][A day in a life with Org]]
-     3. [[http://sachachua.com/blog/2007/12/clocking-time-with-emacs-org/][Clocking Time with Emacs Org]]
-     4. [[http://sachachua.com/blog/2008/01/tagging-in-org-plus-bonus-code-for-timeclocks-and-tags/][Tagging in Org – plus bonus code for timeclocks and tags!]]
-     5. [[http://members.optusnet.com.au/~charles57/GTD/org_dates/][Using dates and times in Emacs org-mode]]
-     6. [[http://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html][Publishing Org-mode files to HTML]]
-     7. [[http://orgmode.org/worg/org-tutorials/org-latex-export.html][LaTeX Export]]
-     8. [[http://orgmode.org/worg/org-tutorials/org-google-sync.html][Google Calendar Synchronization]]
-     9. [[http://orgmode.org/worg/org-tutorials/tracking-habits.html][Tracking Habits with Org-mode]]
-     10. [[http://orgmode.org/worg/org-tutorials/org-beamer/tutorial.html][Writing Beamer presentations in org-mode]]
-     11. [[http://orgmode.org/worg/org-tutorials/non-beamer-presentations.html][Writing Non-Beamer presentations in org-mode]]
-     12. [[http://juanreyero.com/article/emacs/org-teams.html][Org-mode tricks for team management]]
-  2. Learn [[http://www.latex-project.org/][Latex]]
-     1. [[file:~/Dropbox/LaTex-Beginners-Guide-eBook19082011_1090426.pdf][LaTex Beginner's Guide]]
-  3. Learn [[http://www.gnus.org/][Gnus]]
+* Keeping my life in plain text
+  1. [[http://orgmode.org/][Org-Mode]]
+     1) [[http://doc.norang.ca/org-mode.html][Org Mode - Organize Your Life In Plain Text!]]
+     2) [[http://sachachua.com/blog/2007/12/a-day-in-a-life-with-org/][A day in a life with Org]]
+     3) [[http://sachachua.com/blog/2007/12/clocking-time-with-emacs-org/][Clocking Time with Emacs Org]]
+     4) [[http://sachachua.com/blog/2008/01/tagging-in-org-plus-bonus-code-for-timeclocks-and-tags/][Tagging in Org – plus bonus code for timeclocks and tags!]]
+     5) [[http://members.optusnet.com.au/~charles57/GTD/org_dates/][Using dates and times in Emacs org-mode]]
+     6) [[http://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html][Publishing Org-mode files to HTML]]
+     7) [[http://orgmode.org/worg/org-tutorials/org-latex-export.html][LaTeX Export]]
+     8) [[http://orgmode.org/worg/org-tutorials/org-google-sync.html][Google Calendar Synchronization]]
+     9) [[http://orgmode.org/worg/org-tutorials/tracking-habits.html][Tracking Habits with Org-mode]]
+     10) [[http://orgmode.org/worg/org-tutorials/org-beamer/tutorial.html][Writing Beamer presentations in org-mode]]
+     11) [[http://orgmode.org/worg/org-tutorials/non-beamer-presentations.html][Writing Non-Beamer presentations in org-mode]]
+     12) [[http://juanreyero.com/article/emacs/org-teams.html][Org-mode tricks for team management]]
+  2. [[http://www.latex-project.org/][Latex]]
+     1) [[file:~/Dropbox/LaTex-Beginners-Guide-eBook19082011_1090426.pdf][LaTex Beginner's Guide]]
+  3. [[http://www.gnus.org/][Gnus]]
      #+source:.gnus.el
      #+begin_src emacs-lisp
-       (load "starttls")
-       (load-library "smtpmail")
+          (load "starttls")
+          (load-library "smtpmail")
        
-       (setq user-mail-address "robo4288@gmail.com")
-       (setq user-full-name "Robert Boone")
+          (setq user-mail-address "robo4288@gmail.com")
+          (setq user-full-name "Robert Boone")
        
-       ;; Configure incoming mail (IMAP)
-       (setq gnus-select-method '(nnimap "gmail"
-                                         (nnimap-address "imap.gmail.com")
-                                         (nnimap-server-port 993)
-                                         (nnimap-authinfo-file "~/.authinfo")
-                                         (nnimap-stream ssl)))
+          ;; Configure incoming mail (IMAP)
+          (setq gnus-select-method '(nnimap "gmail"
+                                            (nnimap-address "imap.gmail.com")
+                                            (nnimap-server-port 993)
+                                            (nnimap-authinfo-file "~/.authinfo")
+                                            (nnimap-stream ssl)))
        
-       ;; Configure outbound mail (SMTP)
-       (setq smtpmail-auth-credentials "~/.authinfo"
-             smtpmail-smtp-server "smtp.gmail.com"
-             smtpmail-default-smtp-server "smtp.gmail.com"
-             send-mail-function 'smtpmail-send-it
-             message-send-mail-function 'smtpmail-send-it
-             smtpmail-smtp-service 587
-             smtpmail-debug-info t
-             smtpmail-debug-verb t)
-       (setq smtpmail-local-domain nil)
-       (setq gnus-permanently-visible-groups "gmail")
-       (executable-find starttls-program)
+          ;; Configure outbound mail (SMTP)
+          (setq smtpmail-auth-credentials "~/.authinfo"
+                smtpmail-smtp-server "smtp.gmail.com"
+                smtpmail-default-smtp-server "smtp.gmail.com"
+                send-mail-function 'smtpmail-send-it
+                message-send-mail-function 'smtpmail-send-it
+                smtpmail-smtp-service 587
+                smtpmail-debug-info t
+                smtpmail-debug-verb t)
+          (setq smtpmail-local-domain nil)
+          (setq gnus-permanently-visible-groups "gmail")
+          (executable-find starttls-program)
        
-     #+end_src
-  4. Learn [[http://philjackson.github.com/magit/][Magit]]
-     1. [[http://vimeo.com/2871241][Meet Magit]]
-  5. Learn Behaviour-Driven Development
-     1. [[http://search.cpan.org/~sargie/Test-BDD-Cucumber-0.01/][Test::BDD::Cucumber]]
-     2. [[http://code.google.com/p/uispec/][UISpec]]
-     3. [[http://www.kiwi-lib.info/][Kiwi]]
-  6. Learn [[http://vimeo.com/14742598][Emacs-Calc]]
-  7. Movies to watch
-     - [[file:~/Dropbox/Movies/NSConf11Main-06%20Kevin%20Hoctor.m4v][Building a better business]]
-     - [[Http://peepcode.com/products/cucumber][Use The Cucumber]]
+        #+end_src
+  4. [[http://www.emacswiki.org/emacs/JabberEl][Emacs-Jabber]]
+  5. [[http://philjackson.github.com/magit/][Magit]]
+     1) [[http://vimeo.com/2871241][Meet Magit]]
+  6. Behaviour-Driven Development
+     1) [[http://search.cpan.org/~sargie/Test-BDD-Cucumber-0.01/][Test::BDD::Cucumber]]
+     2) [[http://code.google.com/p/uispec/][UISpec]]
+     3) [[http://www.kiwi-lib.info/][Kiwi]]
+  7. [[http://vimeo.com/14742598][Emacs-Calc]]
+  8. [[http://ledger-cli.org/][Ledger]]
+     1) [[http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-ledger.html][Using Ledger for Accounting in Org-mode with Babel]]
+     2) [[https://github.com/jwiegley/ledger/tree/next/lisp][Emacs interface to ledger]]
+     3) [[http://bugsplat.info/2010-05-23-keeping-finances-with-ledger.html][Program your Finances: Command-line Accounting]]
+     4) [[http://bugsplat.info/2011-07-09-program-your-finances-reporting-for-fun-and-profit.html][Program your Finances: Reporting for Fun and Profit]]
+     5) [[http://bugsplat.info/2011-08-04-program-your-finances-vacation-tracking.html][Program Your Finances: Vacation Tracking]]
+* Movies to watch
+  1) [[file:~/Dropbox/Movies/NSConf11Main-06%20Kevin%20Hoctor.m4v][Building a better business]]
+  2) [[Http://peepcode.com/products/cucumber][Use The Cucumber]]
 * Starting a business
-  + Work on [[file:Elections.org][Elections Web Service]]
-  + Read [[http://www.entrepreneur.com/management/leadership/businessstrategies/article65230.html][How to Write Your Mission Statement]]
-  + Read [[http://www.freshbooks.com/blog/2011/08/16/becoming-a-business-owner-series-part-1-staying-balanced-while-busy/][Becoming a Business Owner Series Part 1: Staying Balanced While Busy]]
-    - Why are you in business?
-    - Who are your customers?
-    - What image of your business do you want to convey?
-    - What level of service do you provide?
-    - What roles do you and your employees play?
-    - What kind of relationships will you maintain with suppliers?
-    - How do you differ from your competitors?
-    - How will you use technology, processes, and services to reach your goals?
-    - What underlying philosophies or values guided your responses to the previous questions?
+  1) Work on [[file:Elections.org][Elections Web Service]]
+  2) Read [[http://www.entrepreneur.com/management/leadership/businessstrategies/article65230.html][How to Write Your Mission Statement]]
+  3) Read [[http://www.freshbooks.com/blog/2011/08/16/becoming-a-business-owner-series-part-1-staying-balanced-while-busy/][Becoming a Business Owner Series Part 1: Staying Balanced While Busy]]
+     1) Why are you in business?
+     2) Who are your customers?
+     3) What image of your business do you want to convey?
+     4) What level of service do you provide?
+     5) What roles do you and your employees play?
+     6) What kind of relationships will you maintain with suppliers?
+     7) How do you differ from your competitors?
+     8) How will you use technology, processes, and services to reach your goals?
+     9) What underlying philosophies or values guided your responses to the previous questions?
