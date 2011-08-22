@@ -1,46 +1,46 @@
 * Generic functions
 #+begin_src emacs-lisp
-(defun launch-term-for-current-buffer ()
-     (interactive)
-     (save-buffer)
-     (ns-do-applescript
-      (concat
-       "tell application \"iTerm\" \n\
-          activate \n\
-          tell the first terminal \n\
-            launch session \"Default Session\" \n\
-            tell the last session \n\
-              write text \"cd " (file-name-directory (buffer-file-name)) "\" \n\
+  (defun launch-term-for-current-buffer ()
+       (interactive)
+       (save-buffer)
+       (ns-do-applescript
+        (concat
+         "tell application \"iTerm\" \n\
+            activate \n\
+            tell the first terminal \n\
+              launch session \"Default Session\" \n\
+              tell the last session \n\
+                write text \"cd " (file-name-directory (buffer-file-name)) "\" \n\
+              end tell \n\
             end tell \n\
-          end tell \n\
-        end tell")))
-(global-set-key (kbd "<f6>") 'launch-term-for-current-buffer)    
-
-(defmacro comment (&optional sym &rest body)
-  (let ((arg (if (not (null *comment*)) *comment* sym)))
-    (cond ((and (symbolp arg)
-                (eq :run arg)) `(progn ,@body))
-          ((integerp arg)
-           (nth arg `(,@body))))))
-
-(defun rlb3/join (collection separator)
-  (mapconcat 'identity collection separator))
-
-(defmacro* rlb3/with-gensyms (syms &body body)
-  `(let ,(mapcar #'(lambda (s)
-                     `(,s (gensym)))
-                 syms)
-     ,@body))
-
-(defmacro* rlb3/save-windows (&body body)
-  (rlb3/with-gensyms (letter reg-value)
-                     `(let* ((,letter ?s)
-                             (,reg-value (get-register ,letter)))
-                        (window-configuration-to-register ,letter)
-                        (unwind-protect
-                            ,@body
-                          (jump-to-register ,letter)
-                          (set-register ,letter ,reg-value)))))
+          end tell")))
+  (global-set-key (kbd "<f6>") 'launch-term-for-current-buffer)    
+  
+  (defmacro comment (&optional sym &rest body)
+    (let ((arg (if (not (null *comment*)) *comment* sym)))
+      (cond ((and (symbolp arg)
+                  (eq :run arg)) `(progn ,@body))
+            ((integerp arg)
+             (nth arg `(,@body))))))
+  
+  (defun rlb3/join (collection separator)
+    (mapconcat 'identity collection separator))
+  
+  (defmacro* rlb3/with-gensyms (syms &body body)
+    `(let ,(mapcar #'(lambda (s)
+                       `(,s (gensym)))
+                   syms)
+       ,@body))
+  
+  (defmacro* rlb3/save-windows (&body body)
+    (rlb3/with-gensyms (letter reg-value)
+                       `(let* ((,letter ?s)
+                               (,reg-value (get-register ,letter)))
+                          (window-configuration-to-register ,letter)
+                          (unwind-protect
+                              ,@body
+                            (jump-to-register ,letter)
+                            (set-register ,letter ,reg-value)))))
 #+end_src
 * [[http://www.reddit.com/r/emacs/comments/jh1me/keeping_large_dired_buffers_tidy/][Keeping large dired buffers tidy]] 
 My philosophy of use for dired is to keep open 1 or 2 dired buffers and use lots of subdirs. LOTS. For a while there I was frustrated with how unmanageable a dired buffer can become with dozens of open subdirs, which involve many branches in the directory structure.
@@ -146,126 +146,129 @@ I set the 'k' key to the following simple little function. Kill the current subd
 * .emacs.d
 ** init.el
 #+begin_src emacs-lisp 
-(push "/usr/local/bin" exec-path)
-
-(ido-mode t)
-
-(setq make-backup-files nil)
-(setq auto-save-default nil)
-(setq-default tab-width 4)
-(setq-default indent-tabs-mode nil)
-(setq inhibit-startup-message t)
-
-(fset 'yes-or-no-p 'y-or-n-p)
-
-(delete-selection-mode t)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(blink-cursor-mode t)
-(show-paren-mode t)
-(column-number-mode t)
-(set-fringe-style -1)
-(tooltip-mode -1)
-
-(global-set-key "\C-x\C-b" 'ibuffer)
-
-(setq rlb3-user-config (concat user-emacs-directory user-login-name ".el")
-      rlb3-user-dir (concat user-emacs-directory user-login-name)
-      rlb3-system-config (concat user-emacs-directory (car (split-string system-name "\\.")) ".el"))
-
-(add-to-list 'load-path rlb3-user-dir)
-
-(dolist (l (directory-files rlb3-user-dir nil "^[^#].*el$"))
-  (load l))
-
-(when (file-exists-p rlb3-user-config)
-  (load rlb3-user-config))
-
-(when (file-exists-p rlb3-system-config)
-  (load rlb3-system-config))
-
-(require 'package)
-(package-initialize)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+  (push "/usr/local/bin" exec-path)
+  
+  (ido-mode t)
+  
+  (setq make-backup-files nil)
+  (setq auto-save-default nil)
+  (setq-default tab-width 4)
+  (setq-default indent-tabs-mode nil)
+  (setq inhibit-startup-message t)
+  
+  (fset 'yes-or-no-p 'y-or-n-p)
+  
+  (delete-selection-mode t)
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (blink-cursor-mode t)
+  (show-paren-mode t)
+  (column-number-mode t)
+  (set-fringe-style -1)
+  (tooltip-mode -1)
+  
+  (global-set-key "\C-x\C-b" 'ibuffer)
+  
+  (setq rlb3-user-config (concat user-emacs-directory user-login-name ".el")
+        rlb3-user-dir (concat user-emacs-directory user-login-name)
+        rlb3-system-config (concat user-emacs-directory (car (split-string system-name "\\.")) ".el"))
+  
+  (add-to-list 'load-path rlb3-user-dir)
+  
+  (dolist (l (directory-files rlb3-user-dir nil "^[^#].*el$"))
+    (load l))
+  
+  (when (file-exists-p rlb3-user-config)
+    (load rlb3-user-config))
+  
+  (when (file-exists-p rlb3-system-config)
+    (load rlb3-system-config))
+  
+  (require 'package)
+  (package-initialize)
+  (add-to-list 'package-archives
+               '("marmalade" . "http://marmalade-repo.org/packages/") t)
 #+end_src
-
 ** robert.el
 #+begin_src emacs-lisp
-(set-frame-font "Monaco-24")
-
-(global-set-key (kbd "C-c g") 'magit-status)
-
-(setq ispell-program-name "/usr/local/bin/aspell")
-(setq ispell-extra-args '("--sug-mode=ultra"))
-
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
-
-(setq org-todo-keywords
-      (quote ((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "|" "DONE(d!/!)")
-              (sequence "WAITING(w@/!)" "SOMEDAY(S!)" "|" "CANCELLED(c@/!)" "PHONE")
-              (sequence "OPEN(O!)" "|" "CLOSED(C!)"))))
-
-(setq org-todo-keyword-faces 
-      (quote (("TODO" :foreground "red" :weight bold)
-              ("NEXT" :foreground "blue" :weight bold)
-              ("STARTED" :foreground "blue" :weight bold)
-              ("DONE" :foreground "forest green" :weight bold)
-              ("WAITING" :foreground "orange" :weight bold)
-              ("SOMEDAY" :foreground "magenta" :weight bold)
-              ("CANCELLED" :foreground "forest green" :weight bold)
-              ("OPEN" :foreground "blue" :weight bold)
-              ("CLOSED" :foreground "forest green" :weight bold)
-              ("PHONE" :foreground "forest green" :weight bold))))
-
-(setq org-mobile-directory "~/Dropbox/MobileOrg")
-(setq org-directory "~/Dropbox/org-files")
-(setq org-agenda-files (quote ("~/Dropbox/org-files/omnifocus.org")))
-
-(setq org-mobile-inbox-for-pull "~/Dropbox/org-files/inbox.org")
-
-(add-to-list 'load-path "~/.emacs.d/vender/yasnippet")
-(require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/snippets")
-(defun yas/org-very-safe-expand ()
-  (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
-
-(add-hook 'org-mode-hook
-  (lambda ()
-    ;; yasnippet (using the new org-cycle hooks)
-    (make-variable-buffer-local 'yas/trigger-key)
-    (setq yas/trigger-key [tab])
-    (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
-    (define-key yas/keymap [tab] 'yas/next-field)))
-
-(set-language-environment "utf-8")
-(setq slime-net-coding-system 'utf-8-unix)
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
-  ;; Replace "sbcl" with the path to your implementation
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
-
-(defun sm-try-smerge ()
-  (save-excursion
-    (goto-char (point-min))
-    (when (re-search-forward "^<<<<<<< " nil t)
-      (smerge-mode 1))))
-(add-hook 'find-file-hook 'sm-try-smerge t)
-
-(add-to-list 'load-path "~/.emacs.d/vender/emacs-jabber")
-(require 'jabber-autoloads)
-(setq jabber-account-list
-      '(("robo4288@gmail.com" 
-         (:network-server . "talk.google.com")
-         (:connection-type . ssl))
-        ("robert@jabber.cpanel.net/emacs2"
-         (:network-server . "jabber.cpanel.net")
-         (:connection-type . ssl))))
+  (set-frame-font "Monaco-24")
+  
+  (global-set-key (kbd "C-c g") 'magit-status)
+  
+  (setq ispell-program-name "/usr/local/bin/aspell")
+  (setq ispell-extra-args '("--sug-mode=ultra"))
+  
+  (global-set-key "\C-cl" 'org-store-link)
+  (global-set-key "\C-ca" 'org-agenda)
+  (global-set-key "\C-cb" 'org-iswitchb)
+  
+  (setq org-todo-keywords
+        (quote ((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "|" "DONE(d!/!)")
+                (sequence "WAITING(w@/!)" "SOMEDAY(S!)" "|" "CANCELLED(c@/!)" "PHONE")
+                (sequence "OPEN(O!)" "|" "CLOSED(C!)"))))
+  
+  (setq org-todo-keyword-faces 
+        (quote (("TODO" :foreground "red" :weight bold)
+                ("NEXT" :foreground "blue" :weight bold)
+                ("STARTED" :foreground "blue" :weight bold)
+                ("DONE" :foreground "forest green" :weight bold)
+                ("WAITING" :foreground "orange" :weight bold)
+                ("SOMEDAY" :foreground "magenta" :weight bold)
+                ("CANCELLED" :foreground "forest green" :weight bold)
+                ("OPEN" :foreground "blue" :weight bold)
+                ("CLOSED" :foreground "forest green" :weight bold)
+                ("PHONE" :foreground "forest green" :weight bold))))
+  
+  (setq org-mobile-directory "~/Dropbox/MobileOrg")
+  (setq org-directory "~/Dropbox/org-files")
+  (setq org-agenda-files (quote ("~/Dropbox/org-files/omnifocus.org")))
+  
+  (setq org-mobile-inbox-for-pull "~/Dropbox/org-files/inbox.org")
+  
+  (setq org-refile-targets
+        (quote (("omnifocus.org" :maxlevel . 1))))
+  
+  (add-to-list 'load-path "~/.emacs.d/vender/yasnippet")
+  (require 'yasnippet)
+  (yas/initialize)
+  (yas/load-directory "~/.emacs.d/snippets")
+  (defun yas/org-very-safe-expand ()
+    (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
+  
+  (add-hook 'org-mode-hook
+    (lambda ()
+      ;; yasnippet (using the new org-cycle hooks)
+      (make-variable-buffer-local 'yas/trigger-key)
+      (setq yas/trigger-key [tab])
+      (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
+      (define-key yas/keymap [tab] 'yas/next-field)))
+  
+  (set-language-environment "utf-8")
+  (setq slime-net-coding-system 'utf-8-unix)
+  (load (expand-file-name "~/quicklisp/slime-helper.el"))
+    ;; Replace "sbcl" with the path to your implementation
+  (setq inferior-lisp-program "/usr/local/bin/sbcl")
+  
+  (defun sm-try-smerge ()
+    (save-excursion
+      (goto-char (point-min))
+      (when (re-search-forward "^<<<<<<< " nil t)
+        (smerge-mode 1))))
+  (add-hook 'find-file-hook 'sm-try-smerge t)
+  
+  (add-to-list 'load-path "~/.emacs.d/vender/emacs-jabber")
+  (require 'jabber-autoloads)
+  (setq jabber-account-list
+        '(("robo4288@gmail.com" 
+           (:network-server . "talk.google.com")
+           (:connection-type . ssl))
+          ("robert@jabber.cpanel.net/emacs2"
+           (:network-server . "jabber.cpanel.net")
+           (:connection-type . ssl))))
+  
 #+end_src
 * yasnippets
-  #+sourcename header
+  #+source: header
 #+begin_src emacs-lisp 
 # cpanel - ${1:`(let ((file-name (substring (buffer-file-name) 18)))
                   (concat file-name (dotimes (x (- 39 (length file-name)))
