@@ -1,5 +1,11 @@
 #+TITLE: Elections web service
-
+* Reading
+  - [[http://www.proceedings2009.imcsit.org/pliks/137.pdf][Voter non-repudiation oriented scheme for the medium scale e-voting protocol]]
+  - [[http://en.wikipedia.org/wiki/Non-repudiation][Wikipedia - Non-repudiation]]
+  - [[http://world.std.com/~cme/non-repudiation.htm][Non-repudiation]]
+  - [[www.youtube.com/watch?v%3DEniayN04hE4][Non-repudiation - YouTube]]
+  - [[http://www.giac.org/paper/gsec/247/non-repudiation-simple-understand-difficult-implement/100770][Non-Repudiation - Simple to Understand, Difficult to Implement]]
+  - 
 * Features
   <2011-08-14 Sun>
   - The user will be able to upload a list of eligible voters

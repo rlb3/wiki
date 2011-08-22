@@ -54,7 +54,9 @@
           (executable-find starttls-program)
        
         #+end_src
+     1. [[http://www.emacswiki.org/emacs/GnusGmail][Gnus Gmail]]
   4. [[http://www.emacswiki.org/emacs/JabberEl][Emacs-Jabber]]
+     1. [[https://sourceforge.net/projects/emacs-jabber/files/emacs-jabber%2520beta%2520versions/0.8.90/][Emacs-Jabber with xml namespace fix for gtalk]]
   5. [[http://philjackson.github.com/magit/][Magit]]
      1) [[http://vimeo.com/2871241][Meet Magit]]
   6. Behaviour-Driven Development
