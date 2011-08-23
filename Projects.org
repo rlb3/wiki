@@ -24,22 +24,27 @@
      12) [[http://juanreyero.com/article/emacs/org-teams.html][Org-mode tricks for team management]]
   2. [[http://www.latex-project.org/][Latex]]
      1) [[file:~/Dropbox/LaTex-Beginners-Guide-eBook19082011_1090426.pdf][LaTex Beginner's Guide]]
+     2) [[http://www.cv-templates.info/2009/03/professional-cv-latex/][Writing Your Professional CV with LaTeX]]
   3. [[http://www.gnus.org/][Gnus]]
-     #+source:.gnus.el
-     #+begin_src emacs-lisp
+     1. [[http://gertm.blogspot.com/2009/06/my-little-gnus-and-gmail-howto.html][My little Gnus and Gmail howto]]
+     2. [[http://www.efod.se/writings/gnus-and-courier][My experiences from setting up Gnus with nnimap and Courier IMAP]]
+     3. [[http://www.reverttoconsole.com/blog/linux/gnus-emacs-and-gmail-getting-started/][Gnus, Emacs, and Gmail; Getting Started]]
+     4. [[http://www.emacswiki.org/emacs/GnusGmail][Gnus Gmail]]
+        #+source:.gnus.el
+        #+begin_src emacs-lisp
           (load "starttls")
           (load-library "smtpmail")
-       
+              
           (setq user-mail-address "robo4288@gmail.com")
           (setq user-full-name "Robert Boone")
-       
+              
           ;; Configure incoming mail (IMAP)
           (setq gnus-select-method '(nnimap "gmail"
                                             (nnimap-address "imap.gmail.com")
                                             (nnimap-server-port 993)
                                             (nnimap-authinfo-file "~/.authinfo")
                                             (nnimap-stream ssl)))
-       
+              
           ;; Configure outbound mail (SMTP)
           (setq smtpmail-auth-credentials "~/.authinfo"
                 smtpmail-smtp-server "smtp.gmail.com"
@@ -52,9 +57,8 @@
           (setq smtpmail-local-domain nil)
           (setq gnus-permanently-visible-groups "gmail")
           (executable-find starttls-program)
-       
-        #+end_src
-     1. [[http://www.emacswiki.org/emacs/GnusGmail][Gnus Gmail]]
+              
+           #+end_src
   4. [[http://www.emacswiki.org/emacs/JabberEl][Emacs-Jabber]]
      1. [[https://sourceforge.net/projects/emacs-jabber/files/emacs-jabber%2520beta%2520versions/0.8.90/][Emacs-Jabber with xml namespace fix for gtalk]]
   5. [[http://philjackson.github.com/magit/][Magit]]
