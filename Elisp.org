@@ -272,6 +272,26 @@ I set the 'k' key to the following simple little function. Kill the current subd
      (ledger . t)
      (sqlite . t)))
   
+  (require 'epa)
+  (epa-file-enable)
+  (require 'org-crypt)
+  (org-crypt-use-before-save-magic)
+  (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+       
+  (setq org-crypt-key nil)
+  ;; GPG key to use for encryption
+  ;; Either the Key ID or set to nil to use symmetric encryption.
+       
+  (setq auto-save-default nil)
+  ;; Auto-saving does not cooperate with org-crypt.el: so you need
+  ;; to turn it off if you plan to use org-crypt.el quite often.
+  ;; Otherwise, you'll get an (annoying) message each time you
+  ;; start Org.
+       
+  ;; To turn it off only locally, you can insert this:
+  ;;
+  ;; # -*- buffer-auto-save-file-name: nil; -*-
+  
   (set-language-environment "utf-8")
   (setq slime-net-coding-system 'utf-8-unix)
   (load (expand-file-name "~/quicklisp/slime-helper.el"))
@@ -501,36 +521,20 @@ $0
  #+results:
  : 1479 /Users/robert/Dropbox/WIKI/Elisp.org
 
-* Gnus Config
-  #+begin_src emacs-lisp :tangle ~/.gnus.el
-          (load "starttls")
-          (load-library "smtpmail")
-              
-          (setq user-mail-address "robo4288@gmail.com")
-          (setq user-full-name "Robert Boone")
-              
-          ;; Configure incoming mail (IMAP)
-          (setq gnus-select-method '(nnimap "gmail"
-                                            (nnimap-address "imap.gmail.com")
-                                            (nnimap-server-port 993)
-                                            (nnimap-authinfo-file "~/.authinfo")
-                                            (nnimap-stream ssl)))
-              
-          ;; Configure outbound mail (SMTP)
-          (setq smtpmail-auth-credentials "~/.authinfo"
-                smtpmail-smtp-server "smtp.gmail.com"
-                smtpmail-default-smtp-server "smtp.gmail.com"
-                send-mail-function 'smtpmail-send-it
-                message-send-mail-function 'smtpmail-send-it
-                smtpmail-smtp-service 587
-                smtpmail-debug-info t
-                smtpmail-debug-verb t)
-          (setq smtpmail-local-domain nil)
-          (setq gnus-permanently-visible-groups "gmail")
-          (executable-find starttls-program)
-              
-           #+end_src
-  #+begin_src sh :tangle ~/.authinfo
-    machine imap.gmail.com login robo4288@gmail.com password xXxXxXxXxXx port 993
-    machine smtp.gmail.com login robo4288@gmail.com password xXxXxXxXxXx port 587
-  #+end_src
+* Gnus Config                                                         :crypt:
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1.4.11 (Darwin)
+
+jA0EAwMCj4SLoVhUVdxgycE+jR9A6Bhslbj93dwKU7IfmEP4EhLZV6MQyJy8bnn3
+izDhAIwuNVAixVfT/rgScuvH1R+w80Wttjjm2wQFrltikupGDB9DKVonBtJKSw5P
+SDSkjdYSiewVgyKOC8gKY3N3xdP5tTJnNm6vbl+T9Sz1964uUrlH41k12Eq68LK2
+YbjhJLhzTeFO5SpBxAN/pbCQHG9x6Lq9CJ0Gy+dX1f47mNb+H6HPyTig2lHDTwrQ
+IZQuIioLBMvZOkpx5X+gRQO3M1fjLJhvEaiWKN1MISfhpcXM/phaLKupVpcD2vFA
+x1BmCOXG2t0zfz7H1DLs2CUkoy7RBDJgVvPVVRx/l6zSC/bsenhTkeDvOTueoMNX
+ju4KpxO87KyQfxEvU/zM+HCCxYJdkh+W5WzJHcQz80N7ECcmh/SdKklTSTkwJJ2u
+H+RtdoUeTeHng3cEE6t4VXmrWjhF57QUw1Ce97BNJdTnJEDOxpXbfDD+bRPwoSQj
+gayTaDwTkcX3EAFt0mrX/U5hSe+5S5LCKxnD0ijFzRou7MOTX1zs9119zsashsMA
+knbJDJ18Un9YHR1Wz2kNPcy5EBm4at2aaSUS6GoWS1Xu5hT/12ySlw2ROCMgscer
+n2iCZlkuUxC5GY5x3wmyr/T/Vj+V8/iov5YlNa48PBazEAbNMzrM6GWy27kiB3Jq
+=gHZl
+-----END PGP MESSAGE-----
