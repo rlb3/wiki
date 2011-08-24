@@ -24,6 +24,7 @@
      11) [[http://orgmode.org/worg/org-tutorials/non-beamer-presentations.html][Writing Non-Beamer presentations in org-mode]]
      12) [[http://juanreyero.com/article/emacs/org-teams.html][Org-mode tricks for team management]]
      13) [[http://julien.danjou.info/org-contacts.html][Org-Contact]]
+     14) [[gnus:Org-mode#0D7B51F9-9986-4C86-96B6-4341408085B3@gmail.com][This made me laugh]]
   3) [[http://www.latex-project.org/][Latex]]
      1) [[file:~/Dropbox/LaTex-Beginners-Guide-eBook19082011_1090426.pdf][LaTex Beginner's Guide]]
      2) [[http://www.cv-templates.info/2009/03/professional-cv-latex/][Writing Your Professional CV with LaTeX]]
@@ -31,36 +32,7 @@
      1. [[http://gertm.blogspot.com/2009/06/my-little-gnus-and-gmail-howto.html][My little Gnus and Gmail howto]]
      2. [[http://www.efod.se/writings/gnus-and-courier][My experiences from setting up Gnus with nnimap and Courier IMAP]]
      3. [[http://www.reverttoconsole.com/blog/linux/gnus-emacs-and-gmail-getting-started/][Gnus, Emacs, and Gmail; Getting Started]]
-     4. [[http://www.emacswiki.org/emacs/GnusGmail][Gnus Gmail]]
-        #+source:.gnus.el
-        #+begin_src emacs-lisp :tangle ~/.gnus.el
-          (load "starttls")
-          (load-library "smtpmail")
-              
-          (setq user-mail-address "robo4288@gmail.com")
-          (setq user-full-name "Robert Boone")
-              
-          ;; Configure incoming mail (IMAP)
-          (setq gnus-select-method '(nnimap "gmail"
-                                            (nnimap-address "imap.gmail.com")
-                                            (nnimap-server-port 993)
-                                            (nnimap-authinfo-file "~/.authinfo")
-                                            (nnimap-stream ssl)))
-              
-          ;; Configure outbound mail (SMTP)
-          (setq smtpmail-auth-credentials "~/.authinfo"
-                smtpmail-smtp-server "smtp.gmail.com"
-                smtpmail-default-smtp-server "smtp.gmail.com"
-                send-mail-function 'smtpmail-send-it
-                message-send-mail-function 'smtpmail-send-it
-                smtpmail-smtp-service 587
-                smtpmail-debug-info t
-                smtpmail-debug-verb t)
-          (setq smtpmail-local-domain nil)
-          (setq gnus-permanently-visible-groups "gmail")
-          (executable-find starttls-program)
-              
-           #+end_src
+
   5) [[http://www.emacswiki.org/emacs/JabberEl][Emacs-Jabber]]
      1. [[https://sourceforge.net/projects/emacs-jabber/files/emacs-jabber%2520beta%2520versions/0.8.90/][Emacs-Jabber with xml namespace fix for gtalk]]
      2. [[http://emacs-jabber.sourceforge.net/manual-0.8.0/][Emacs-Jabber manual]]

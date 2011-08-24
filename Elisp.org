@@ -501,3 +501,36 @@ $0
  #+results:
  : 1479 /Users/robert/Dropbox/WIKI/Elisp.org
 
+* [[http://www.emacswiki.org/emacs/GnusGmail][Gnus Gmail]]
+  #+begin_src emacs-lisp :tangle ~/.gnus.el
+          (load "starttls")
+          (load-library "smtpmail")
+              
+          (setq user-mail-address "robo4288@gmail.com")
+          (setq user-full-name "Robert Boone")
+              
+          ;; Configure incoming mail (IMAP)
+          (setq gnus-select-method '(nnimap "gmail"
+                                            (nnimap-address "imap.gmail.com")
+                                            (nnimap-server-port 993)
+                                            (nnimap-authinfo-file "~/.authinfo")
+                                            (nnimap-stream ssl)))
+              
+          ;; Configure outbound mail (SMTP)
+          (setq smtpmail-auth-credentials "~/.authinfo"
+                smtpmail-smtp-server "smtp.gmail.com"
+                smtpmail-default-smtp-server "smtp.gmail.com"
+                send-mail-function 'smtpmail-send-it
+                message-send-mail-function 'smtpmail-send-it
+                smtpmail-smtp-service 587
+                smtpmail-debug-info t
+                smtpmail-debug-verb t)
+          (setq smtpmail-local-domain nil)
+          (setq gnus-permanently-visible-groups "gmail")
+          (executable-find starttls-program)
+              
+           #+end_src
+  #+begin_src sh :tangle ~/.authinfo
+    machine imap.gmail.com login robo4288@gmail.com password xXxXxXxXxXx port 993
+    machine smtp.gmail.com login robo4288@gmail.com password xXxXxXxXxXx port 587
+  #+end_src
