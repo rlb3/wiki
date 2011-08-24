@@ -145,8 +145,12 @@ I set the 'k' key to the following simple little function. Kill the current subd
 #+end_src
 * .emacs.d
 ** init.el
-#+begin_src emacs-lisp 
+#+begin_src emacs-lisp :tangle ~/.emacs.d/init.el
+  (require 'cl)
+  
   (push "/usr/local/bin" exec-path)
+  
+  (global-font-lock-mode 1)
   
   (ido-mode t)
   
@@ -188,10 +192,13 @@ I set the 'k' key to the following simple little function. Kill the current subd
   (package-initialize)
   (add-to-list 'package-archives
                '("marmalade" . "http://marmalade-repo.org/packages/") t)
+  
 #+end_src
 ** robert.el
-#+begin_src emacs-lisp
-  (set-frame-font "Monaco-24")
+#+begin_src emacs-lisp :tangle ~/.emacs.d/robert.el
+  (set-register ?w '(file . "~/Dropbox/WIKI/Home.org"))
+  (set-register ?i '(file . "~/.emacs.d/init.el"))
+  (set-register ?r '(file . "~/.emacs.d/robert.el"))
   
   (global-set-key (kbd "C-c g") 'magit-status)
   
@@ -226,22 +233,44 @@ I set the 'k' key to the following simple little function. Kill the current subd
   (setq org-mobile-inbox-for-pull "~/Dropbox/org-files/inbox.org")
   
   (setq org-refile-targets
-        (quote (("omnifocus.org" :maxlevel . 1))))
+        (quote (("omnifocus.org" :maxlevel . 1)
+                ("articles.org" :maxlevel . 1))))
   
-  (add-to-list 'load-path "~/.emacs.d/vender/yasnippet")
-  (require 'yasnippet)
-  (yas/initialize)
-  (yas/load-directory "~/.emacs.d/snippets")
-  (defun yas/org-very-safe-expand ()
-    (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
+  (setq org-clock-persist 'history)
+  (org-clock-persistence-insinuate)
+  (setq org-clock-in-resume t)
+  (setq org-drawers (quote ("PROPERTIES" "LOGBOOK")))
+  (setq org-clock-into-drawer t)
+  (setq org-clock-out-remove-zero-time-clocks t)
+  (setq org-clock-out-when-done t)
+  (setq org-clock-persist (quote history))
+  (setq org-clock-auto-clock-resolution (quote when-no-clock-is-running))
+  (setq org-clock-report-include-clocking-task t)
   
-  (add-hook 'org-mode-hook
-    (lambda ()
-      ;; yasnippet (using the new org-cycle hooks)
-      (make-variable-buffer-local 'yas/trigger-key)
-      (setq yas/trigger-key [tab])
-      (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
-      (define-key yas/keymap [tab] 'yas/next-field)))
+  (when (file-exists-p "~/.emacs.d/vender/yasnippet")
+    (add-to-list 'load-path "~/.emacs.d/vender/yasnippet")
+    (require 'yasnippet)
+    (yas/initialize)
+    (yas/load-directory "~/.emacs.d/snippets")
+    (defun yas/org-very-safe-expand ()
+      (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
+  
+    (add-hook 'org-mode-hook
+              (lambda ()
+                ;; yasnippet (using the new org-cycle hooks)
+                (make-variable-buffer-local 'yas/trigger-key)
+                (setq yas/trigger-key [tab])
+                (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
+                (define-key yas/keymap [tab] 'yas/next-field))))
+  
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (perl . t)
+     (sh . t)
+     (ruby . t)
+     (ledger . t)
+     (sqlite . t)))
   
   (set-language-environment "utf-8")
   (setq slime-net-coding-system 'utf-8-unix)
@@ -256,15 +285,16 @@ I set the 'k' key to the following simple little function. Kill the current subd
         (smerge-mode 1))))
   (add-hook 'find-file-hook 'sm-try-smerge t)
   
-  (add-to-list 'load-path "~/.emacs.d/vender/emacs-jabber")
-  (require 'jabber-autoloads)
-  (setq jabber-account-list
-        '(("robo4288@gmail.com" 
-           (:network-server . "talk.google.com")
-           (:connection-type . ssl))
-          ("robert@jabber.cpanel.net/emacs2"
-           (:network-server . "jabber.cpanel.net")
-           (:connection-type . ssl))))
+  (when (file-exists-p "~/.emacs.d/vender/emacs-jabber")
+    (add-to-list 'load-path "~/.emacs.d/vender/emacs-jabber")
+    (require 'jabber-autoloads)
+    (setq jabber-account-list
+          '(("robo4288@gmail.com" 
+             (:network-server . "talk.google.com")
+             (:connection-type . ssl))
+            ("robert@jabber.cpanel.net/emacs2"
+             (:network-server . "jabber.cpanel.net")
+             (:connection-type . ssl)))))
   
 #+end_src
 * yasnippets
@@ -463,3 +493,11 @@ $0
 
 (provide 'fbcli)
 #+end_src
+
+ #+begin_src sh :var filename=(buffer-file-name) :exports both
+   wc -w $filename
+ #+end_src
+
+ #+results:
+ : 1479 /Users/robert/Dropbox/WIKI/Elisp.org
+

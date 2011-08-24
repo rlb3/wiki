@@ -9,7 +9,8 @@
   | [[http://pragprog.com/book/ktmack/mac-kung-fu][Mac Kung Fu: Over 300 Tips, Tricks, Hints, and Hacks for OS X Lion]]         | PragProg       | $22.00 |
   |                                                                            |                |        |
 * Keeping my life in plain text
-  1. [[http://orgmode.org/][Org-Mode]]
+  1) [[http://www.gnu.org/software/emacs/manual/html_node/emacs/index.html][Emacs Manual]]
+  2) [[http://orgmode.org/][Org-Mode]]
      1) [[http://doc.norang.ca/org-mode.html][Org Mode - Organize Your Life In Plain Text!]]
      2) [[http://sachachua.com/blog/2007/12/a-day-in-a-life-with-org/][A day in a life with Org]]
      3) [[http://sachachua.com/blog/2007/12/clocking-time-with-emacs-org/][Clocking Time with Emacs Org]]
@@ -22,16 +23,17 @@
      10) [[http://orgmode.org/worg/org-tutorials/org-beamer/tutorial.html][Writing Beamer presentations in org-mode]]
      11) [[http://orgmode.org/worg/org-tutorials/non-beamer-presentations.html][Writing Non-Beamer presentations in org-mode]]
      12) [[http://juanreyero.com/article/emacs/org-teams.html][Org-mode tricks for team management]]
-  2. [[http://www.latex-project.org/][Latex]]
+     13) [[http://julien.danjou.info/org-contacts.html][Org-Contact]]
+  3) [[http://www.latex-project.org/][Latex]]
      1) [[file:~/Dropbox/LaTex-Beginners-Guide-eBook19082011_1090426.pdf][LaTex Beginner's Guide]]
      2) [[http://www.cv-templates.info/2009/03/professional-cv-latex/][Writing Your Professional CV with LaTeX]]
-  3. [[http://www.gnus.org/][Gnus]]
+  4) [[http://www.gnus.org/][Gnus]]
      1. [[http://gertm.blogspot.com/2009/06/my-little-gnus-and-gmail-howto.html][My little Gnus and Gmail howto]]
      2. [[http://www.efod.se/writings/gnus-and-courier][My experiences from setting up Gnus with nnimap and Courier IMAP]]
      3. [[http://www.reverttoconsole.com/blog/linux/gnus-emacs-and-gmail-getting-started/][Gnus, Emacs, and Gmail; Getting Started]]
      4. [[http://www.emacswiki.org/emacs/GnusGmail][Gnus Gmail]]
         #+source:.gnus.el
-        #+begin_src emacs-lisp
+        #+begin_src emacs-lisp :tangle ~/.gnus.el
           (load "starttls")
           (load-library "smtpmail")
               
@@ -59,24 +61,27 @@
           (executable-find starttls-program)
               
            #+end_src
-  4. [[http://www.emacswiki.org/emacs/JabberEl][Emacs-Jabber]]
+  5) [[http://www.emacswiki.org/emacs/JabberEl][Emacs-Jabber]]
      1. [[https://sourceforge.net/projects/emacs-jabber/files/emacs-jabber%2520beta%2520versions/0.8.90/][Emacs-Jabber with xml namespace fix for gtalk]]
-  5. [[http://philjackson.github.com/magit/][Magit]]
+     2. [[http://emacs-jabber.sourceforge.net/manual-0.8.0/][Emacs-Jabber manual]]
+  6) [[http://philjackson.github.com/magit/][Magit]]
      1) [[http://vimeo.com/2871241][Meet Magit]]
-  6. Behaviour-Driven Development
+  7) Behaviour-Driven Development
      1) [[http://search.cpan.org/~sargie/Test-BDD-Cucumber-0.01/][Test::BDD::Cucumber]]
      2) [[http://code.google.com/p/uispec/][UISpec]]
      3) [[http://www.kiwi-lib.info/][Kiwi]]
-  7. [[http://vimeo.com/14742598][Emacs-Calc]]
-  8. [[http://ledger-cli.org/][Ledger]]
+  8) [[http://vimeo.com/14742598][Emacs-Calc]]
+     1. [[http://www.emacswiki.org/emacs/AdvancedDeskCalculator][Advanced Desk Calculator]]
+     2. [[http://www.xemacs.org/Documentation/packages/html/calc.html][Calc manual]]
+     3. [[http://nullprogram.com/blog/2009/06/23/][The Emacs Calculator]]
+  9) [[http://ledger-cli.org/][Ledger]]
      1) [[http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-ledger.html][Using Ledger for Accounting in Org-mode with Babel]]
      2) [[https://github.com/jwiegley/ledger/tree/next/lisp][Emacs interface to ledger]]
      3) [[http://bugsplat.info/2010-05-23-keeping-finances-with-ledger.html][Program your Finances: Command-line Accounting]]
      4) [[http://bugsplat.info/2011-07-09-program-your-finances-reporting-for-fun-and-profit.html][Program your Finances: Reporting for Fun and Profit]]
      5) [[http://bugsplat.info/2011-08-04-program-your-finances-vacation-tracking.html][Program Your Finances: Vacation Tracking]]
 * Movies to watch
-  1) [[file:~/Dropbox/Movies/NSConf11Main-06%20Kevin%20Hoctor.m4v][Building a better business]]
-  2) [[Http://peepcode.com/products/cucumber][Use The Cucumber]]
+  1) [[Http://peepcode.com/products/cucumber][Use The Cucumber]]
 * Starting a business
   1) Work on [[file:Elections.org][Elections Web Service]]
   2) Read [[http://www.entrepreneur.com/management/leadership/businessstrategies/article65230.html][How to Write Your Mission Statement]]
@@ -90,3 +95,6 @@
      7) How do you differ from your competitors?
      8) How will you use technology, processes, and services to reach your goals?
      9) What underlying philosophies or values guided your responses to the previous questions?
+  4) Everyone in the business should have a WIKI page for there notes
+     1) or a linkable WIKI that is composed of local WIKIs
+        
