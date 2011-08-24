@@ -32,7 +32,6 @@
      1. [[http://gertm.blogspot.com/2009/06/my-little-gnus-and-gmail-howto.html][My little Gnus and Gmail howto]]
      2. [[http://www.efod.se/writings/gnus-and-courier][My experiences from setting up Gnus with nnimap and Courier IMAP]]
      3. [[http://www.reverttoconsole.com/blog/linux/gnus-emacs-and-gmail-getting-started/][Gnus, Emacs, and Gmail; Getting Started]]
-
   5) [[http://www.emacswiki.org/emacs/JabberEl][Emacs-Jabber]]
      1. [[https://sourceforge.net/projects/emacs-jabber/files/emacs-jabber%2520beta%2520versions/0.8.90/][Emacs-Jabber with xml namespace fix for gtalk]]
      2. [[http://emacs-jabber.sourceforge.net/manual-0.8.0/][Emacs-Jabber manual]]

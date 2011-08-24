@@ -501,7 +501,7 @@ $0
  #+results:
  : 1479 /Users/robert/Dropbox/WIKI/Elisp.org
 
-* [[http://www.emacswiki.org/emacs/GnusGmail][Gnus Gmail]]
+* Gnus Config
   #+begin_src emacs-lisp :tangle ~/.gnus.el
           (load "starttls")
           (load-library "smtpmail")
