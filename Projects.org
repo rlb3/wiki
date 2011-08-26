@@ -1,13 +1,14 @@
 #+TITLE: Projects
 
 * Things I want to buy
-  | Item                                                                       | Note           | Price  |
-  |----------------------------------------------------------------------------+----------------+--------|
-  | [[http://www.amazon.com/iOS-Programming-Ranch-Guides-ebook/dp/B004Z2NQJQ/ref%3Dpd_sim_kinc_1?ie%3DUTF8&m%3DAG56TWVU5XWC2][iOS Programming: The Big Nerd Ranch Guide]]                                  | Kindle version | $26.99 |
-  | [[http://peepcode.com/products/cucumber][Use the Cucumber]]                                                           | Peepcode       | $12.00 |
-  | [[http://pragprog.com/book/hwcuc/the-cucumber-book][The Cucumber Book: Behaviour-Driven Development for Testers and Developers]] | PragProg       | $20.00 |
-  | [[http://pragprog.com/book/ktmack/mac-kung-fu][Mac Kung Fu: Over 300 Tips, Tricks, Hints, and Hacks for OS X Lion]]         | PragProg       | $22.00 |
-  |                                                                            |                |        |
+  | Item                                                                             | Note           | Price  |
+  |----------------------------------------------------------------------------------+----------------+--------|
+  | [[http://www.amazon.com/iOS-Programming-Ranch-Guides-ebook/dp/B004Z2NQJQ/ref%3Dpd_sim_kinc_1?ie%3DUTF8&m%3DAG56TWVU5XWC2][iOS Programming: The Big Nerd Ranch Guide]]                                        | Kindle version | $26.99 |
+  | [[http://peepcode.com/products/cucumber][Use the Cucumber]]                                                                 | Peepcode       | $12.00 |
+  | [[http://pragprog.com/book/hwcuc/the-cucumber-book][The Cucumber Book: Behaviour-Driven Development for Testers and Developers]]       | PragProg       | $20.00 |
+  | [[http://pragprog.com/book/ktmack/mac-kung-fu][Mac Kung Fu: Over 300 Tips, Tricks, Hints, and Hacks for OS X Lion]]               | PragProg       | $22.00 |
+  | [[http://pragprog.com/book/jcdeg/new-programmer-s-survival-manual][New Programmer's Survival Manual: Navigate Your Workplace, Cube Farm, or Startup]] |                | $19.00 |
+  |                                                                                  |                |        |
 * Keeping my life in plain text
   1) [[http://www.gnu.org/software/emacs/manual/html_node/emacs/index.html][Emacs Manual]]
   2) [[http://orgmode.org/][Org-Mode]]

@@ -192,6 +192,19 @@ I set the 'k' key to the following simple little function. Kill the current subd
   (package-initialize)
   (add-to-list 'package-archives
                '("marmalade" . "http://marmalade-repo.org/packages/") t)
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
+   '(custom-enabled-themes (quote (light-blue))))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   )
   
 #+end_src
 ** robert.el
@@ -525,16 +538,17 @@ $0
 -----BEGIN PGP MESSAGE-----
 Version: GnuPG v1.4.11 (Darwin)
 
-jA0EAwMCj4SLoVhUVdxgycE+jR9A6Bhslbj93dwKU7IfmEP4EhLZV6MQyJy8bnn3
-izDhAIwuNVAixVfT/rgScuvH1R+w80Wttjjm2wQFrltikupGDB9DKVonBtJKSw5P
-SDSkjdYSiewVgyKOC8gKY3N3xdP5tTJnNm6vbl+T9Sz1964uUrlH41k12Eq68LK2
-YbjhJLhzTeFO5SpBxAN/pbCQHG9x6Lq9CJ0Gy+dX1f47mNb+H6HPyTig2lHDTwrQ
-IZQuIioLBMvZOkpx5X+gRQO3M1fjLJhvEaiWKN1MISfhpcXM/phaLKupVpcD2vFA
-x1BmCOXG2t0zfz7H1DLs2CUkoy7RBDJgVvPVVRx/l6zSC/bsenhTkeDvOTueoMNX
-ju4KpxO87KyQfxEvU/zM+HCCxYJdkh+W5WzJHcQz80N7ECcmh/SdKklTSTkwJJ2u
-H+RtdoUeTeHng3cEE6t4VXmrWjhF57QUw1Ce97BNJdTnJEDOxpXbfDD+bRPwoSQj
-gayTaDwTkcX3EAFt0mrX/U5hSe+5S5LCKxnD0ijFzRou7MOTX1zs9119zsashsMA
-knbJDJ18Un9YHR1Wz2kNPcy5EBm4at2aaSUS6GoWS1Xu5hT/12ySlw2ROCMgscer
-n2iCZlkuUxC5GY5x3wmyr/T/Vj+V8/iov5YlNa48PBazEAbNMzrM6GWy27kiB3Jq
-=gHZl
+jA0EAwMCUSr0RTH3S5NgycE82N1PysMsl2WdMDR8WN5YHsV9Xz2LgEDIfaSO6Loi
+625c6Fa5ogtoXNeQnMV/TGrN3vhOPKIKcCmNUAfTSAaIyHVnOuKg+1rcpsguo2Ns
+Jjm5F/YGfA1XkAmxZlPNKdxyAue2v5l2+Xo3/h2sWhhyoqc0nizqJS5jBYaNNmGS
+VKkLBJTatNPGv5WfiJYrMn2UlVr2yWxEUQ6gXOBUz1tVR+xULIut4KoMlooEuMoX
+qnD28yEUtFewbm1oSPfOJ2FEApsq7YF0+Xwd2whgen3PvBRPkuAhJPX2i+qLYgf8
+CJSGOOdj7Vcz44bgDp4fw0RYFRjWMBvEz6a2a9YCRo+Dlai6Nl3t6IyyisIjaSQq
+JXojk3ctZhJXYPWl9K2MizSU1zZeKu3UOKQUz8aXMtW1Vt4zxj9FBW2VtyDRqm0s
+ZzcyxMO7BrP322NWNHTxjjCnxKPGpNIdj19MCIHQNdl4xnVpe2zrRaWswwSex0AO
+hHq55l8/diU8yW96bvigFHLetvUUJdHCcfBpi0dB12IpkfaIbUDzoKIJeWeW2N7g
+4+kLbtdjGMyJWuVVYJDjhrM+MVVWNwtBLrMjrt/aBla7mtY0D2TGFI33GU/zZP3J
+5j35szmI8wI7ZSH94+bsjyoz4JWffLZSEQG1Pd95Fpn5ZFFZHejsBTB6amCALA==
+=iukC
 -----END PGP MESSAGE-----
+
