@@ -22,6 +22,7 @@
     - State "DONE"       from ""           <2011-08-15 Mon>
 *** TODO Bug Tracker
     [[http://usefulinc.com/edd/notes/IssueTrackers][Bug Trackers to look into]] [2011-08-21 Sun]
+*** Look at GitHub paid account - [[https://github.com/features/projects/issues][Issues]]
 ** Backend
     - Perl
       - [[http://mojolicio.us/][Mojolicious]]

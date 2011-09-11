@@ -147,10 +147,29 @@ I set the 'k' key to the following simple little function. Kill the current subd
 ** init.el
 #+begin_src emacs-lisp :tangle ~/.emacs.d/init.el
   (require 'cl)
+  (defvar *emacs-load-start* (current-time))
   
   (push "/usr/local/bin" exec-path)
   
   (global-font-lock-mode 1)
+  
+  (global-set-key (kbd "C-x m") 'eshell)
+  (global-set-key (kbd "M-/") 'hippie-expand)
+  (setq-default indent-tabs-mode nil)
+  (setq require-final-newline t)
+  
+  (global-auto-revert-mode t)
+  
+  (setq hippie-expand-try-functions-list '(try-expand-dabbrev
+                                           try-expand-dabbrev-all-buffers
+                                           try-expand-dabbrev-from-kill
+                                           try-complete-file-name-partially
+                                           try-complete-file-name
+                                           try-expand-all-abbrevs
+                                           try-expand-list
+                                           try-expand-line
+                                           try-complete-lisp-symbol-partially
+                                           try-complete-lisp-symbol))
   
   (ido-mode t)
   
@@ -206,6 +225,38 @@ I set the 'k' key to the following simple little function. Kill the current subd
    ;; If there is more than one, they won't work right.
    )
   
+  (setq locale-coding-system 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+  (set-selection-coding-system 'utf-8)
+  (prefer-coding-system 'utf-8)
+  (set-language-environment "UTF-8")
+  (set-input-method nil)
+  (setq read-quoted-char-radix 10)
+  
+  (setq save-place-file "~/.emacs.d/saveplace")
+  (setq-default save-place t)
+  (require 'saveplace)
+  
+  (setq savehist-additional-variables
+        '(search ring regexp-search-ring)
+        savehist-autosave-interval 60
+        savehist-file (concat "~/.emacs.d" "/savehist"))
+  (savehist-mode t)
+  
+  (setq
+   bookmark-default-file "~/.emacs.d/bookmarks"
+   bookmark-save-flag 1)
+  
+  (setq whitespace-style '(trailing lines space-before-tab
+                                    indentation space-after-tab)
+        whitespace-line-column 80)
+  
+  (add-hook 'after-save-hook
+            'executable-make-buffer-file-executable-if-script-p)
+  
+  (message "My emacs config loaded in %ds" (destructuring-bind (hi lo ms) (current-time)
+                                             (- (+ hi lo) (+ (first *emacs-load-start*) (second *emacs-load-start*)))))
 #+end_src
 ** robert.el
 #+begin_src emacs-lisp :tangle ~/.emacs.d/robert.el
@@ -217,6 +268,9 @@ I set the 'k' key to the following simple little function. Kill the current subd
   
   (setq ispell-program-name "/usr/local/bin/aspell")
   (setq ispell-extra-args '("--sug-mode=ultra"))
+  
+  (setq org-time-stamp-rounding-minutes '(0 1))
+  (setq org-src-fontify-natively t)
   
   (global-set-key "\C-cl" 'org-store-link)
   (global-set-key "\C-ca" 'org-agenda)
@@ -260,21 +314,18 @@ I set the 'k' key to the following simple little function. Kill the current subd
   (setq org-clock-auto-clock-resolution (quote when-no-clock-is-running))
   (setq org-clock-report-include-clocking-task t)
   
-  (when (file-exists-p "~/.emacs.d/vender/yasnippet")
-    (add-to-list 'load-path "~/.emacs.d/vender/yasnippet")
-    (require 'yasnippet)
-    (yas/initialize)
-    (yas/load-directory "~/.emacs.d/snippets")
-    (defun yas/org-very-safe-expand ()
-      (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
+  (global-set-key (kbd "C-M-t") 'org-capture)
   
-    (add-hook 'org-mode-hook
-              (lambda ()
-                ;; yasnippet (using the new org-cycle hooks)
-                (make-variable-buffer-local 'yas/trigger-key)
-                (setq yas/trigger-key [tab])
-                (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
-                (define-key yas/keymap [tab] 'yas/next-field))))
+  (setq org-capture-templates
+        (quote (("n" "Notes" entry (file+datetree "~/Dropbox/org-files/notes.org")
+                 "* %?\n%U\n  %i" :clock-in t :clock-resume t)
+                ("i" "Interruptions" entry  (file "~/Dropbox/org-files/interruptions.org")
+                 "* %? :interruption:\n%T" :clock-in t :clock-resume t))))
+  
+  (add-to-list 'load-path "~/.emacs.d/vender/yasnippet")
+  (require 'yasnippet)
+  (yas/initialize)
+  (yas/load-directory "~/.emacs.d/snippets")
   
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -329,6 +380,24 @@ I set the 'k' key to the following simple little function. Kill the current subd
              (:network-server . "jabber.cpanel.net")
              (:connection-type . ssl)))))
   
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (setq-default TeX-master nil)
+  (add-hook 'LaTeX-mode-hook 'visual-line-mode)
+  (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+  (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  (setq reftex-plug-into-AUCTeX t)
+  
+  (defun eval-and-replace ()
+    "Replace the preceding sexp with its value."
+    (interactive)
+    (backward-kill-sexp)
+    (condition-case nil
+        (prin1 (eval (read (current-kill 0)))
+               (current-buffer))
+      (error (message "Invalid expression")
+             (insert (current-kill 0)))))
 #+end_src
 * yasnippets
   #+source: header
@@ -526,29 +595,20 @@ $0
 
 (provide 'fbcli)
 #+end_src
-
- #+begin_src sh :var filename=(buffer-file-name) :exports both
-   wc -w $filename
- #+end_src
-
- #+results:
- : 1479 /Users/robert/Dropbox/WIKI/Elisp.org
-
 * Gnus Config                                                         :crypt:
 -----BEGIN PGP MESSAGE-----
 Version: GnuPG v1.4.11 (Darwin)
 
-jA0EAwMCUSr0RTH3S5NgycE82N1PysMsl2WdMDR8WN5YHsV9Xz2LgEDIfaSO6Loi
-625c6Fa5ogtoXNeQnMV/TGrN3vhOPKIKcCmNUAfTSAaIyHVnOuKg+1rcpsguo2Ns
-Jjm5F/YGfA1XkAmxZlPNKdxyAue2v5l2+Xo3/h2sWhhyoqc0nizqJS5jBYaNNmGS
-VKkLBJTatNPGv5WfiJYrMn2UlVr2yWxEUQ6gXOBUz1tVR+xULIut4KoMlooEuMoX
-qnD28yEUtFewbm1oSPfOJ2FEApsq7YF0+Xwd2whgen3PvBRPkuAhJPX2i+qLYgf8
-CJSGOOdj7Vcz44bgDp4fw0RYFRjWMBvEz6a2a9YCRo+Dlai6Nl3t6IyyisIjaSQq
-JXojk3ctZhJXYPWl9K2MizSU1zZeKu3UOKQUz8aXMtW1Vt4zxj9FBW2VtyDRqm0s
-ZzcyxMO7BrP322NWNHTxjjCnxKPGpNIdj19MCIHQNdl4xnVpe2zrRaWswwSex0AO
-hHq55l8/diU8yW96bvigFHLetvUUJdHCcfBpi0dB12IpkfaIbUDzoKIJeWeW2N7g
-4+kLbtdjGMyJWuVVYJDjhrM+MVVWNwtBLrMjrt/aBla7mtY0D2TGFI33GU/zZP3J
-5j35szmI8wI7ZSH94+bsjyoz4JWffLZSEQG1Pd95Fpn5ZFFZHejsBTB6amCALA==
-=iukC
+jA0EAwMCwpDSz94ejh9gycE+G9ZAdNcCXZH+DlgFAWnDZwN0BK/ufeTQsAmL0V99
+/kUq8ZF4GUzwfl2Jvc1UbhBBz6NWnW1GAcnxoroUC0Yu/8xEbwAjuBNl/uLIt8tQ
+zAwrHHFaJ0oo+pPixlRsW9QD9JaG5SBY93QJ60XyFkO8VScmi+9hDDnO23/dwWQZ
+Jv9AQ23sqMU+03XL3LCIUufP5Hc8EudsJzlYvXpQ1ro3Qju5SJBGKebbF5SRZzyV
+tq4dR3hAxP7FjazafwQsvMQfZ9q1oXqRsBXNcnKRRjBU27Xgm5aNO7IzSoqS0bIh
+llFvE8cvdxWV7OX58fQlptH6quy9k3b1OzCESSuR+Gu/y0h6qZF1FKbdwA4/o7WQ
+jSvCaCN/dDARGCzKog8ugaci1m9rbVGvH4wQa1/1kl+5TM0ZHMLuMW7jZrvxRntH
+jlyiY6vK3N3B9T+lAzc7eFHVs/LG32lGbiIqmZyQeDCPJVCTYL5TBdvInDXAMt5K
+DAUKpYZZx0u5GMd0Nc4RVFDTpVAyZEpq4SRXZbeZQIj6SQARkMfaehgjfG5SP367
+P5AWoUdOoSZVvTnoZ/6KOtBGz3KkUtVqMUwb7A7YlT9skqfXA1fqfctBQlIYRYi/
+ZDtno8HdB/MfJW7xT9rjGLgddxs+UETcjGfXaZA3fKZPg82WwcAl3ZuXq/SfkXWE
+=bEXM
 -----END PGP MESSAGE-----
-
